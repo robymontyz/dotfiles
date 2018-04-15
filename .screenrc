@@ -1,0 +1,48 @@
+# Don't display copyright page at startup
+startup_message off
+
+# Bindings
+bind = resize =		# add bind: equally resize all regions
+# add bind: resize regions with arrows 
+
+bind S				# remove bind: split horizontally
+bind - split		# add bind: split horizontally
+# add bind: moves between regions with ctrl-arrows
+bindkey "^[[1;5D" focus left
+bindkey "^[[1;5C" focus right
+bindkey "^[[1;5A" focus up
+bindkey "^[[1;5B" focus down
+
+# Change default scrollback value for new windows
+defscrollback 1000
+
+# Caption bar: different for each window
+# %? : part to the next %? is displayed only if a % expands to a non-empty string
+# %F : sets %? to true if the window has the focus 
+# %{Wb} : set colors (foreground bright white (W), background blue (b))
+# %n : window number
+# %t : window title
+# %h : hardstatus of the window
+caption always "%?%F%{Wb}%?%n %t%? [%h]%?"
+
+# Hardware status bar, common for all the windows
+#
+# %{= Yk} : set colors to bright yellow (Y) on black (k) and keep current text styles (=)
+# %H : hostname
+# %L= : add a padding point (L). Further truncation/padding is done relative to here, not the beginning of the string
+# %-Lw : list windows before current window (L [optional] = "include flags")
+# %45L> : truncate string from both ends; place this point about 45% of the way into the display area (45) and add "..." when truncating (L)
+# %{= bW} : set colors to bright white (W) on blue (b) and keep current text styles (=)
+# %n : window number
+# %f : window flags
+# %t : window title
+# %{-} : restore colors to previous colors / undo last color change
+# %+Lw : list windows after current window (L [optional] = "include flags")
+# %-13= : expand to fill all space starting from the right side for 13 characters
+# %m : current month (0-padded)
+# %d : current date (0-padded)
+# %c : current time (24-hr)
+hardstatus alwayslastline "%{=b Yk}[%H] %L=%-Lw%45L>%{= bW}%n%f %t%{-}%+Lw%-13=[%d/%m %c]"
+
+# Don't print e.g. vim output on the screen when exit, use the "alternate screen"
+altscreen 'on'

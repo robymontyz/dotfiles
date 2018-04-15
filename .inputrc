@@ -1,0 +1,5 @@
+# Keybindings
+
+# Search your history for commands starting with that text using up/down arrows
+"\e[A": history-search-backward
+"\e[B": history-search-forward

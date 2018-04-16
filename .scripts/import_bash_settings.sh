@@ -30,12 +30,23 @@ cp -fp ${BACKUPDIR}/vimrc ~/.vimrc
 # are copied rather than the directory itself
 cp -Rfp ${BACKUPDIR}/vim/ ~/.vim
 
-# screen settings
-cp -fp ${BACKUPDIR}/screenrc ~/.screenrc 
-
 # git settings
 cp -fp ${BACKUPDIR}/gitconfig ~/.gitconfig 
 cp -Rfp ${BACKUPDIR}/config/git/ ~/.config/git
+
+# screen settings
+cp -fp ${BACKUPDIR}/screenrc ~/.screenrc
+
+# install homebrew and its formulae
+brew help
+if [ $? -ne 0 ]; then
+	# install homebrew
+	echo "Installing Homebrew..."
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+# install all formulae
+echo "Installing brew formulae..."
+brew install $(< list.txt)
 
 # personal scripts
 cp -Rfp ${BACKUPDIR}/scripts/ ~/.scripts

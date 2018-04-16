@@ -31,6 +31,16 @@ cp -Rfp ~/.config/git/ ${BACKUPDIR}/config/git
 # screen settings
 cp -fp ~/.screenrc ${BACKUPDIR}/screenrc
 
+# homebrew formulae installed
+# check if homebrew is installed
+brew help
+if [ $? -ne 0 ]; then
+	# install homebrew!
+	echo "Homebrew not installed" >&2
+else
+	brew leaves > ${BACKUPDIR}/brew_installed.txt
+fi
+
 # personal scripts
 cp -Rfp ~/.scripts/ ${BACKUPDIR}/scripts
 

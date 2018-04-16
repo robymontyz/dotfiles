@@ -24,6 +24,10 @@ cp -fp ~/.vimrc ${BACKUPDIR}/vimrc
 # are copied rather than the directory itself
 cp -Rfp ~/.vim/ ${BACKUPDIR}/vim
 
+# git settings
+cp -fp ~/.gitconfig ${BACKUPDIR}/gitconfig
+cp -Rfp ~/.config/git/ ${BACKUPDIR}/config/git
+
 # screen settings
 cp -fp ~/.screenrc ${BACKUPDIR}/screenrc
 

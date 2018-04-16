@@ -33,6 +33,10 @@ cp -Rfp ${BACKUPDIR}/vim/ ~/.vim
 # screen settings
 cp -fp ${BACKUPDIR}/screenrc ~/.screenrc 
 
+# git settings
+cp -fp ${BACKUPDIR}/gitconfig ~/.gitconfig 
+cp -Rfp ${BACKUPDIR}/config/git/ ~/.config/git
+
 # personal scripts
 cp -Rfp ${BACKUPDIR}/scripts/ ~/.scripts
 

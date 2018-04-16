@@ -2,16 +2,25 @@
 startup_message off
 
 # Bindings
-bind = resize =		# add bind: equally resize all regions
-# add bind: resize regions with arrows 
+bind = resize =				# add bind: equally resize all regions
 
-bind S				# remove bind: split horizontally
-bind - split		# add bind: split horizontally
-# add bind: moves between regions with ctrl-arrows
-bindkey "^[[1;5D" focus left
-bindkey "^[[1;5C" focus right
-bindkey "^[[1;5A" focus up
-bindkey "^[[1;5B" focus down
+# add bind: resize regions with ctrl-a + arrows
+# -k use termcap keyboard capability name
+bind -k kl resize -h +3		# resize left
+bind -k kr resize -h -3		# resize right
+bind -k ku resize -v -3		# resize up
+bind -k kd resize -v +3		# resize down
+
+bind S						# remove bind: split horizontally
+bind - split				# add bind: split horizontally
+
+# add bind: moves between regions with ctrl-b + arrows
+# ctrl-b recall the class 'rsz': kl,kr,ku,kd are the possible cmds on it
+bindkey "^B" command -c rsz
+bind -c rsz -k kl focus left
+bind -c rsz -k kr focus right
+bind -c rsz -k ku focus up
+bind -c rsz -k kd focus down
 
 # Change default scrollback value for new windows
 defscrollback 1000
@@ -46,3 +55,24 @@ hardstatus alwayslastline "%{=b Yk}[%H] %L=%-Lw%45L>%{= bW}%n%f %t%{-}%+Lw%-13=[
 
 # Don't print e.g. vim output on the screen when exit, use the "alternate screen"
 altscreen 'on'
+
+# mouse tracking allows to switch region focus by clicking
+mousetrack on
+
+# creating default layout
+layout autosave on
+layout new one
+screen -t Shell   0 bash
+screen -t ViM     1 bash
+screen -t Develop 2 bash
+select 0
+split
+split -v
+resize -v +10
+resize -h -12
+focus right
+select 1
+focus down
+select 2
+focus up
+focus right

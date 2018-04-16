@@ -20,12 +20,6 @@
 *.tar
 *.zip
 
-# Temporary files #
-###################
-*.swp
-*.swo
-*~
-
 # Logs and databases #
 ######################
 *.log
@@ -34,10 +28,18 @@
 
 # OS generated files #
 ######################
+# macOS
 .DS_Store
 .DS_Store?
-._*
 .Spotlight-V100
 .Trashes
+# Windows
+._*
 ehthumbs.db
 Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp

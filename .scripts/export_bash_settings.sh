@@ -3,7 +3,7 @@
 # Export bash settings to BACKUPDIR
 
 # TODO: choose your default BACKUDIR here
-BACKUPDIR="/Volumes/MacOS-HDD_500GB/Installed/bash_mods"
+BACKUPDIR=""
 
 if [ $# -eq 0 ] && [ -d ${BACKUPDIR} ]; then
 	echo "Using default backup dir: ${BACKUPDIR}"; echo

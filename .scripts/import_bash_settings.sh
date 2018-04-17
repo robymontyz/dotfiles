@@ -33,17 +33,17 @@ cp -fp ${BACKUPDIR}/vimrc ~/.vimrc
 cp -Rfp ${BACKUPDIR}/vim/spell/ ~/.vim/spell
 
 # git settings
-cp -fp ${BACKUPDIR}/gitconfig ~/.gitconfig 
-cp -fp ${BACKUPDIR}/config/git/ignore ~/.config/git/ignore
+cp -fp ${BACKUPDIR}/gitconfig ~/.gitconfig
+mkdir -p ~/.config/git/ && cp -fp ${BACKUPDIR}/config/git/ignore $_
 
 # screen settings
 cp -fp ${BACKUPDIR}/screenrc ~/.screenrc
 
 # gpg settings
-cp -fp ${BACKUPDIR}/gnupg/pubring.kbx ~/.gnupg/pubring.kbx
+mkdir -p ~/.gnupg/ && cp -fp ${BACKUPDIR}/gnupg/pubring.kbx $_
 # possibly recreate trustdb if corrupted
 #mv ~/.gnupg/trustdb.gpg ~/.gnupg/trustdb.OLD
-#gpg --import-ownertrust < ${BACKUPDIR}/ownertrust.txt
+#gpg --import-ownertrust < ${BACKUPDIR}/gnupg/ownertrust.txt
 
 # install homebrew and its formulae
 # check if homebrew is installed
@@ -60,7 +60,8 @@ brew install $(< list.txt)
 # personal scripts
 cp -Rfp ${BACKUPDIR}/scripts/ ~/.scripts
 
-# personal Agents
+# personal Agents (macOS/launchd only)
+# no need to create dir tree, already present on default
 cp -fp ${BACKUPDIR}/LaunchAgents/com.scripts.ExportBashSettings.plist ~/Library/LaunchAgents/
 cp -fp ${BACKUPDIR}/LaunchAgents/com.scripts.HomebrewUpdate.plist ~/Library/LaunchAgents/
 cp -fp ${BACKUPDIR}/LaunchAgents/com.scripts.MagpiDownload.plist ~/Library/LaunchAgents/

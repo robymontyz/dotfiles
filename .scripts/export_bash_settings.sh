@@ -27,18 +27,19 @@ cp -Rfp ~/.vim/spell/ ${BACKUPDIR}/vim/spell
 
 # git settings
 cp -fp ~/.gitconfig ${BACKUPDIR}/gitconfig
-cp -fp ~/.config/git/ignore ${BACKUPDIR}/config/git/ignore
+# NB: create dir tree first! $_ is the last argument of previous command
+mkdir -p ${BACKUPDIR}/config/git/ && cp -fp ~/.config/git/ignore $_
 
 # screen settings
 cp -fp ~/.screenrc ${BACKUPDIR}/screenrc
 
 # gpg settings
-cp -fp ~/.gnupg/pubring.kbx ${BACKUPDIR}/gnupg/pubring.kbx
-gpg --export-ownertrust > ${BACKUPDIR}/ownertrust.txt
+mkdir -p ${BACKUPDIR}/gnupg/ && cp -fp ~/.gnupg/pubring.kbx $_
+gpg --export-ownertrust > ${BACKUPDIR}/gnupg/ownertrust.txt
 
 # homebrew formulae installed
 # check if homebrew is installed
-brew help
+brew help > /dev/null
 if [ $? -ne 0 ]; then
 	# install homebrew!
 	echo "Homebrew not installed" >&2
@@ -50,9 +51,9 @@ fi
 cp -Rfp ~/.scripts/ ${BACKUPDIR}/scripts
 
 # personal Agents
-cp -fp ~/Library/LaunchAgents/com.scripts.ExportBashSettings.plist ${BACKUPDIR}/LaunchAgents/
-cp -fp ~/Library/LaunchAgents/com.scripts.HomebrewUpdate.plist ${BACKUPDIR}/LaunchAgents/
-cp -fp ~/Library/LaunchAgents/com.scripts.MagpiDownload.plist ${BACKUPDIR}/LaunchAgents/
+mkdir -p ${BACKUPDIR}/LaunchAgents && cp -fp ~/Library/LaunchAgents/com.scripts.ExportBashSettings.plist $_
+mkdir -p ${BACKUPDIR}/LaunchAgents && cp -fp ~/Library/LaunchAgents/com.scripts.HomebrewUpdate.plist $_
+mkdir -p ${BACKUPDIR}/LaunchAgents && cp -fp ~/Library/LaunchAgents/com.scripts.MagpiDownload.plist $_
 
 # Crontab file
 #crontab -l > ${BACKUPDIR}/crontab_file

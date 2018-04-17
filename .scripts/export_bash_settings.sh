@@ -2,13 +2,16 @@
 
 # Export bash settings to BACKUPDIR
 
-# TODO:choose your default BACKUDIR here
+# TODO: choose your default BACKUDIR here
 BACKUPDIR="/Volumes/MacOS-HDD_500GB/Installed/bash_mods"
 
-if [ $# -eq 0 ]; then
+if [ $# -eq 0 ] && [ -d ${BACKUPDIR} ]; then
 	echo "Using default backup dir: ${BACKUPDIR}"; echo
 elif [ $# -eq 1 ] && [ -d $1 ]; then
 	BACKUPDIR=$1
+elif ! [ -d ${BACKUPDIR} ] || ! [ -d $1 ]; then
+	echo "Invalid directory" >&2
+	exit 1
 else
 	echo "Usage: $0 [backupdir]" >&2
 	exit 1
@@ -50,12 +53,14 @@ fi
 # personal scripts
 cp -Rfp ~/.scripts/ ${BACKUPDIR}/scripts
 
-# personal Agents
+# personal launchd agents (macOS/launchd users only)
+# TODO: comment these lines if you don't want this feature
 mkdir -p ${BACKUPDIR}/LaunchAgents && cp -fp ~/Library/LaunchAgents/com.scripts.ExportBashSettings.plist $_
 mkdir -p ${BACKUPDIR}/LaunchAgents && cp -fp ~/Library/LaunchAgents/com.scripts.HomebrewUpdate.plist $_
 mkdir -p ${BACKUPDIR}/LaunchAgents && cp -fp ~/Library/LaunchAgents/com.scripts.MagpiDownload.plist $_
 
 # Crontab file
+# TODO: comment these lines if you are using launchd
 #crontab -l > ${BACKUPDIR}/crontab_file
 
 echo "Bash settings correctly saved in ${BACKUPDIR}"

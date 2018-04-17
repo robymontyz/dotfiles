@@ -41,7 +41,7 @@ NONE=$'\e[m'
 _get_path(){
 	local x=$(pwd | sed -e "s:$HOME:~:")
 	local len=${#x}
-	local max=40
+	local max=32
 	if [ $len -gt $max ]; then
 		echo "...${x:((len-max+3))}"
 	else

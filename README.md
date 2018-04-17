@@ -34,9 +34,9 @@ You can clone/download the repository wherever you want. The script will copy th
 * ### GNU Screen
 	* `.screenrc`
 
-	**Warning** you need GNU Screen with support to vertical split:  
-		* GNU Screen >4.01 natively supports vertical splitting.  
-		* GNU Screen <4.01 may not support vertical splitting without [the patch](http://fungi.yuggoth.org/vsp4s/). Unfortunately the download link is broken.
+	**Warning:** You need GNU Screen with support to vertical split:  
+		- GNU Screen >4.01 natively supports vertical splitting.  
+		- GNU Screen <4.01 may not support vertical splitting without [the patch](http://fungi.yuggoth.org/vsp4s/). Unfortunately the download link is broken.
 
 	In a standard macOS installation, GNU Screen version is probably <4.01, so I strongly recommend to install the latest version with [Homebrew](https://brew.sh).
 
@@ -48,7 +48,7 @@ You can clone/download the repository wherever you want. The script will copy th
 	* `export_bash_settings.sh`
 
 	#### Specify the `$BACKUPDIR` in the scripts
-	You can manually specify a backup directory where to export files with `export_bash_settings.sh` modifying $BACKUPDIR inside the script.  
+	You can manually specify a backup directory where to export files with `export_bash_settings.sh` modifying `$BACKUPDIR` inside the script.  
 	Same applies to `import_bash_settings.sh`.
 
 * ### launchd agents (launchd users or macOS only)

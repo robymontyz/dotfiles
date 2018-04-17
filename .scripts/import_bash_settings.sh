@@ -22,7 +22,6 @@ if ! [ -d ${BACKUPDIR}/bak ]; then
 	mkdir ${BACKUPDIR}/bak
 fi
 ${BACKUPDIR}/scripts/export_bash_settings.sh ${BACKUPDIR}/bak
-echo "Old settings were saved in ${BACKUPDIR}/bak"
 
 # bash settings
 cp -fp ${BACKUPDIR}/bash_profile ~/.bash_profile
@@ -31,13 +30,13 @@ cp -fp ${BACKUPDIR}/inputrc ~/.inputrc
 
 # ViM settings
 cp -fp ${BACKUPDIR}/vimrc ~/.vimrc
-# NB: If the source_file ends in a /, the contents of the directory
-# are copied rather than the directory itself
-cp -Rfp ${BACKUPDIR}/vim/spell/ ~/.vim/spell
+# NB: If the source_file ends in a /, the contents of the directory are copied rather than the directory itself
+# NB2: create dir tree first! $_ is the last argument of previous command
+mkdir -p ~/.vim/spell/ && cp -Rfp ${BACKUPDIR}/vim/spell/ $_
 
 # install homebrew and its formulae
 # check if homebrew is installed
-brew help
+brew help > /dev/null
 if [ $? -ne 0 ]; then
 	# install homebrew
 	echo "Installing Homebrew..."
@@ -66,7 +65,7 @@ mkdir -p ~/.gnupg/ && cp -fp ${BACKUPDIR}/gnupg/pubring.kbx $_
 #gpg --import-ownertrust < ${BACKUPDIR}/gnupg/ownertrust.txt
 
 # personal scripts
-cp -Rfp ${BACKUPDIR}/scripts/ ~/.scripts
+mkdir -p ~/.scripts/ && cp -Rfp ${BACKUPDIR}/scripts/ $_
 
 # personal launchd agents (macOS/launchd users only)
 # TODO: comment these lines if you don't want this feature
@@ -84,7 +83,13 @@ cp -fp ${BACKUPDIR}/LaunchAgents/com.scripts.MagpiDownload.plist ~/Library/Launc
 open ${BACKUPDIR}/Solarized\ Dark\ -\ Patched.terminal
 echo "NB: open Terminal settings and make Solarized Dark the default theme!"; echo
 # Color scheme for Xcode (macOS only)
-cp ${BACKUPDIR}/Solarized\ Dark.xccolortheme ~/Library/Developer/Xcode/UserData/FontAndColorThemes/
-echo "NB: open Xcode settings and make Solarized Dark the default theme!"; echo
+# check if Xcode is installed first!
+xcode-select -p
+if [ $? -eq 0 ]; then
+	cp ${BACKUPDIR}/Solarized\ Dark.xccolortheme ~/Library/Developer/Xcode/UserData/FontAndColorThemes/
+	echo "NB: open Xcode settings and make Solarized Dark the default theme!"; echo
+else
+	echo "Cannot install theme: Xcode not installed."
+fi
 
 echo "Bash settings correctly imported from ${BACKUPDIR}"

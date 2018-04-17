@@ -24,21 +24,9 @@ cp -fp ~/.inputrc ${BACKUPDIR}/inputrc
 
 # ViM settings
 cp -fp ~/.vimrc ${BACKUPDIR}/vimrc
-# NB: If the source_file ends in a /, the contents of the directory 
-# are copied rather than the directory itself
-cp -Rfp ~/.vim/spell/ ${BACKUPDIR}/vim/spell
-
-# git settings
-cp -fp ~/.gitconfig ${BACKUPDIR}/gitconfig
-# NB: create dir tree first! $_ is the last argument of previous command
-mkdir -p ${BACKUPDIR}/config/git/ && cp -fp ~/.config/git/ignore $_
-
-# screen settings
-cp -fp ~/.screenrc ${BACKUPDIR}/screenrc
-
-# gpg settings
-mkdir -p ${BACKUPDIR}/gnupg/ && cp -fp ~/.gnupg/pubring.kbx $_
-gpg --export-ownertrust > ${BACKUPDIR}/gnupg/ownertrust.txt
+# NB: If the source_file ends in a /, the contents of the directory are copied rather than the directory itself
+# NB2: create dir tree first! $_ is the last argument of previous command
+mkdir -p ${BACKUPDIR}/vim/ && cp -Rfp ~/.vim/spell/ $_
 
 # homebrew formulae installed
 # check if homebrew is installed
@@ -50,14 +38,25 @@ else
 	brew leaves > ${BACKUPDIR}/brew_installed.txt
 fi
 
+# git settings
+cp -fp ~/.gitconfig ${BACKUPDIR}/gitconfig
+mkdir -p ${BACKUPDIR}/config/git/ && cp -fp ~/.config/git/ignore $_
+
+# screen settings
+cp -fp ~/.screenrc ${BACKUPDIR}/screenrc
+
+# gpg settings
+mkdir -p ${BACKUPDIR}/gnupg/ && cp -fp ~/.gnupg/pubring.kbx $_
+gpg --export-ownertrust > ${BACKUPDIR}/gnupg/ownertrust.txt
+
 # personal scripts
-cp -Rfp ~/.scripts/ ${BACKUPDIR}/scripts
+mkdir -p ${BACKUPDIR}/scripts/ && cp -Rfp ~/.scripts/ $_
 
 # personal launchd agents (macOS/launchd users only)
 # TODO: comment these lines if you don't want this feature
-mkdir -p ${BACKUPDIR}/LaunchAgents && cp -fp ~/Library/LaunchAgents/com.scripts.ExportBashSettings.plist $_
-mkdir -p ${BACKUPDIR}/LaunchAgents && cp -fp ~/Library/LaunchAgents/com.scripts.HomebrewUpdate.plist $_
-mkdir -p ${BACKUPDIR}/LaunchAgents && cp -fp ~/Library/LaunchAgents/com.scripts.MagpiDownload.plist $_
+mkdir -p ${BACKUPDIR}/LaunchAgents/ && cp -fp ~/Library/LaunchAgents/com.scripts.ExportBashSettings.plist $_
+cp -fp ~/Library/LaunchAgents/com.scripts.HomebrewUpdate.plist ${BACKUPDIR}/LaunchAgents/
+cp -fp ~/Library/LaunchAgents/com.scripts.MagpiDownload.plist ${BACKUPDIR}/LaunchAgents/
 
 # Crontab file
 # TODO: comment these lines if you are using launchd

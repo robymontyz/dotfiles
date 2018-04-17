@@ -3,7 +3,7 @@
 # Import bash settings from BACKUPDIR
 
 # TODO: choose your default BACKUDIR here
-BACKUPDIR=".."
+BACKUPDIR="."
 
 if [ $# -eq 0 ] && [ -d $BACKUPDIR ]; then
 	echo "Using default backup dir: ${BACKUPDIR}"; echo
@@ -84,7 +84,7 @@ open ${BACKUPDIR}/Solarized\ Dark\ -\ Patched.terminal
 echo "NB: open Terminal settings and make Solarized Dark the default theme!"; echo
 # Color scheme for Xcode (macOS only)
 # check if Xcode is installed first!
-xcode-select -p
+xcode-select -p > /dev/null
 if [ $? -eq 0 ]; then
 	cp ${BACKUPDIR}/Solarized\ Dark.xccolortheme ~/Library/Developer/Xcode/UserData/FontAndColorThemes/
 	echo "NB: open Xcode settings and make Solarized Dark the default theme!"; echo

@@ -9,6 +9,9 @@ export GREP_OPTIONS='--color=auto'
 # lines matching the previous history entry will not be saved
 export HISTCONTROL=ignoredups
 
+# For gpg-agent
+export GPG_TTY=$(tty)
+
 # shell options ("shopt -p" for a complete list)
 shopt -s cdspell		# correct dir spelling errors on cd
 # not available in macOS

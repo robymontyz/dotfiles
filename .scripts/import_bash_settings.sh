@@ -2,6 +2,7 @@
 
 # Import bash settings from BACKUPDIR
 
+# TODO:choose your default BACKUDIR here
 BACKUPDIR="/Volumes/MacOS-HDD_500GB/Installed/bash_mods"
 
 if [ $# -eq 0 ]; then
@@ -18,6 +19,7 @@ if ! [ -d ./bak ]; then
 	mkdir ./bak
 fi
 ${BACKUPDIR}/scripts/export_bash_settings.sh ./bak
+echo "Old settings were saved in ${BACKUPDIR}/bak"
 
 # bash settings
 cp -fp ${BACKUPDIR}/bash_profile ~/.bash_profile
@@ -28,16 +30,23 @@ cp -fp ${BACKUPDIR}/inputrc ~/.inputrc
 cp -fp ${BACKUPDIR}/vimrc ~/.vimrc
 # NB: If the source_file ends in a /, the contents of the directory
 # are copied rather than the directory itself
-cp -Rfp ${BACKUPDIR}/vim/ ~/.vim
+cp -Rfp ${BACKUPDIR}/vim/spell/ ~/.vim/spell
 
 # git settings
 cp -fp ${BACKUPDIR}/gitconfig ~/.gitconfig 
-cp -Rfp ${BACKUPDIR}/config/git/ ~/.config/git
+cp -fp ${BACKUPDIR}/config/git/ignore ~/.config/git/ignore
 
 # screen settings
 cp -fp ${BACKUPDIR}/screenrc ~/.screenrc
 
+# gpg settings
+cp -fp ${BACKUPDIR}/gnupg/pubring.kbx ~/.gnupg/pubring.kbx
+# possibly recreate trustdb if corrupted
+#mv ~/.gnupg/trustdb.gpg ~/.gnupg/trustdb.OLD
+#gpg --import-ownertrust < ${BACKUPDIR}/ownertrust.txt
+
 # install homebrew and its formulae
+# check if homebrew is installed
 brew help
 if [ $? -ne 0 ]; then
 	# install homebrew
@@ -67,4 +76,3 @@ cp ${BACKUPDIR}/Solarized\ Dark.xccolortheme ~/Library/Developer/Xcode/UserData/
 echo "NB: open Xcode settings and make Solarized Dark the default theme!"; echo
 
 echo "Bash settings correctly imported from ${BACKUPDIR}"
-echo "Old settings were saved in ${BACKUPDIR}/bak"

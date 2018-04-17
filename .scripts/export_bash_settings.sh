@@ -2,6 +2,7 @@
 
 # Export bash settings to BACKUPDIR
 
+# TODO:choose your default BACKUDIR here
 BACKUPDIR="/Volumes/MacOS-HDD_500GB/Installed/bash_mods"
 
 if [ $# -eq 0 ]; then
@@ -22,14 +23,18 @@ cp -fp ~/.inputrc ${BACKUPDIR}/inputrc
 cp -fp ~/.vimrc ${BACKUPDIR}/vimrc
 # NB: If the source_file ends in a /, the contents of the directory 
 # are copied rather than the directory itself
-cp -Rfp ~/.vim/ ${BACKUPDIR}/vim
+cp -Rfp ~/.vim/spell/ ${BACKUPDIR}/vim/spell
 
 # git settings
 cp -fp ~/.gitconfig ${BACKUPDIR}/gitconfig
-cp -Rfp ~/.config/git/ ${BACKUPDIR}/config/git
+cp -fp ~/.config/git/ignore ${BACKUPDIR}/config/git/ignore
 
 # screen settings
 cp -fp ~/.screenrc ${BACKUPDIR}/screenrc
+
+# gpg settings
+cp -fp ~/.gnupg/pubring.kbx ${BACKUPDIR}/gnupg/pubring.kbx
+gpg --export-ownertrust > ${BACKUPDIR}/ownertrust.txt
 
 # homebrew formulae installed
 # check if homebrew is installed
@@ -52,4 +57,4 @@ cp -fp ~/Library/LaunchAgents/com.scripts.MagpiDownload.plist ${BACKUPDIR}/Launc
 # Crontab file
 #crontab -l > ${BACKUPDIR}/crontab_file
 
-echo "Bash settings saved in ${BACKUPDIR}"
+echo "Bash settings correctly saved in ${BACKUPDIR}"

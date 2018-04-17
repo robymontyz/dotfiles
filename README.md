@@ -13,61 +13,57 @@ You can clone/download the repository wherever you want. The script will copy th
 
 ## Configurations included
 
-### Bash
-- `.bashrc`
-- `.bash_profile`
-- `.inputrc`
+* ### Bash
+	- `.bashrc`
+	- `.bash_profile`
+	- `.inputrc`
 
-### ViM
-- `.vimrc`
-- italian spelling dictionary
+* ### ViM
+	- `.vimrc`
+	- italian spelling dictionary
 
-### Homebrew
-- install [Homebrew](https://brew.sh), if not installed yet
-- install all the formulae specified in `brew_installed.txt`
+* ### Homebrew
+	- install [Homebrew](https://brew.sh), if not installed yet
+	- install all the formulae specified in `brew_installed.txt`
 
-### Git
-- `.gitconfig`
-- `.gitignore` sample
-- global `.gitignore` sample (`.config/git/ignore`)
+* ### Git
+	- `.gitconfig`
+	- `.gitignore` sample
+	- global `.gitignore` sample (`.config/git/ignore`)
 
-### GNU Screen
-- `.screenrc`
+* ### GNU Screen
+	- `.screenrc`
 
-**Warning** you need GNU Screen with support to vertical split:  
-- GNU Screen >4.01 natively supports vertical splitting.  
-- GNU Screen <4.01 may not support vertical splitting without [the patch](http://fungi.yuggoth.org/vsp4s/).
-Unfortunately the download link is broken.  
+	**Warning** you need GNU Screen with support to vertical split:  
+		- GNU Screen >4.01 natively supports vertical splitting.  
+		- GNU Screen <4.01 may not support vertical splitting without [the patch](http://fungi.yuggoth.org/vsp4s/). Unfortunately the download link is broken.
 
-In a standard macOS installation, GNU Screen version is probably <4.01, so I strongly recommend to install the latest version with [Homebrew](https://brew.sh).
+	In a standard macOS installation, GNU Screen version is probably <4.01, so I strongly recommend to install the latest version with [Homebrew](https://brew.sh).
 
-### GnuGP
-- `pubring.kbx`
+* ### GnuGP
+	- `pubring.kbx`
 
-### Install and export scripts
-- `import_bash_settings.sh` (see [Installation](#Installation))
-- `export_bash_settings.sh`
+* ### Install and export scripts
+	- `import_bash_settings.sh` (see [Installation](#Installation))
+	- `export_bash_settings.sh`
 
-#### Specify the `$BACKUPDIR` in the scripts
+	#### Specify the `$BACKUPDIR` in the scripts
 
-You can manually specify a backup directory where to export files with `export_bash_settings.sh` modifying $BACKUPDIR inside the script.
-Same applies to `import_bash_settings.sh`.
+	You can manually specify a backup directory where to export files with `export_bash_settings.sh` modifying $BACKUPDIR inside the script.  
+	Same applies to `import_bash_settings.sh`.
 
-### launchd agents (launchd users or macOS only)
+* ### launchd agents (launchd users or macOS only)
+	`import_bash_settings.sh` will install launchd agents to start some automated script I wrote. You can find the scripts [here](https://github.com/robymontyz).  
+	If you don't want this feature, you can comment these lines.  
+	Same applies to `export_bash_settings.sh`.
 
-`import_bash_settings.sh` will install launchd agents to start some automated script I wrote. You can find the scripts [here](https://github.com/robymontyz).  
-If you don't want this feature, you can comment these lines.
-Same applies to `export_bash_settings.sh`.
+* ### Crontab
+	Deprecated in favor of launchd agents.
 
-### Crontab
-
-Deprecated in favor of launchd agents.
-
-### Terminal.app and XCode *Solarized Dark* themes (macOS only)
-
-`import_bash_settings.sh` will install *Solarized Dark* color schemes for Terminal.app and XCode.
-If you don't want this feature, you can comment these lines.
-Same applies to `export_bash_settings.sh`.
+* ### Terminal.app and XCode *Solarized Dark* themes (macOS only)
+	`import_bash_settings.sh` will install *Solarized Dark* color schemes for Terminal.app and XCode.  
+	If you don't want this feature, you can comment these lines.  
+	Same applies to `export_bash_settings.sh`.
 
 ## Feedback
 
@@ -75,7 +71,7 @@ Suggestions and improvements are [welcome](https://github.com/robymontyz/dotfile
 
 ## Author
 
-[![twitter/robymontyz]](http://twitter.com/robymontyz "Follow @robymontyz on Twitter")
+[twitter/robymontyz](http://twitter.com/robymontyz "Follow @robymontyz on Twitter")
 
 ## Thanks to…
 

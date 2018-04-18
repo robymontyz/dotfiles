@@ -75,6 +75,8 @@ Suggestions and improvements are [welcome](https://github.com/robymontyz/dotfile
 ## Thanks to…
 
 * [StackOverflow](https://stackoverflow.com)
+* [sharfah](https://github.com/sharfah/dotfiles) and his fantastic [blog posts](http://fahdshariff.blogspot.it/2011/03/my-bash-profile-part-i.html)
 * [mathiasbynens](https://github.com/mathiasbynens/dotfiles) for this README
+* [paulirish](https://github.com/paulirish/dotfiles)
 * [mbadolato](https://github.com/mbadolato/iTerm2-Color-Schemes) for *Solarized Dark* Terminal.app theme
 * [ArtSabintsev](https://github.com/ArtSabintsev/Solarized-Dark-for-Xcode) for *Solarized Dark* XCode theme

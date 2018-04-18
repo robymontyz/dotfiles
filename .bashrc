@@ -14,13 +14,23 @@ export GPG_TTY=$(tty)
 
 # shell options ("shopt -p" for a complete list)
 shopt -s cdspell		# correct dir spelling errors on cd
+shopt -s cmdhist		# save multi-line commands as one command
 # not available in macOS
 #shopt -s autocd     # if a command is a dir name, cd to it
 #shopt -s dirspell   # correct dir spelling errors on completion
 
+# highlighting inside manpages and elsewhere
+export LESS_TERMCAP_mb=$'\E[1;31m'		# begin blinking; (?)
+export LESS_TERMCAP_md=$'\E[1;34m'		# begin bold; titles and keywords
+export LESS_TERMCAP_me=$'\E[0m'				# end mode; text
+export LESS_TERMCAP_se=$'\E[0m'				# end standout-mode (?)
+export LESS_TERMCAP_so=$'\E[0;100m'		# begin standout-mode; info line
+export LESS_TERMCAP_ue=$'\E[0m'				# end underline; text
+export LESS_TERMCAP_us=$'\E[4;36m'		# begin underline; arguments
+
 # alias
 alias lsusb='system_profiler SPUSBDataType'    # output lsusb-like
-
+alias la='ls -lah'
 
 
 # ------------------------------------------------------------
@@ -38,6 +48,8 @@ BBLUE=$'\e[34;1m'
 NONE=$'\e[m'
 
 # trims long paths down to 80 chars
+# Automatically trim long paths in the prompt (requires Bash 4.x)
+#PROMPT_DIRTRIM=2
 _get_path(){
 	local x=$(pwd | sed -e "s:$HOME:~:")
 	local len=${#x}

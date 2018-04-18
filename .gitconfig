@@ -7,6 +7,7 @@
 [core]
 	editor = vim
 	excludesfile = ~/.config/git/ignore
+	pager = less -+X
 [commit]
 	gpgSign = true
 [alias]

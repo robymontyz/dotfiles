@@ -57,7 +57,11 @@ hardstatus alwayslastline "%{=b Yk}[%H] %L=%-Lw%45L>%{= bW}%n%f %t%{-}%+Lw%-13=[
 altscreen 'on'
 
 # mouse tracking allows to switch region focus by clicking
+defmousetrack on
 mousetrack on
+
+# add terminal capabilities
+#termcapinfo xterm* ti@:te@			# fix scrolling
 
 # creating default layout
 layout autosave on

@@ -3,14 +3,15 @@
 filetype plugin indent on	" allow intelligent auto-indenting and plugins for each filetype
 syntax on					" enable syntax highlighting
 set number					" display line numbers on the left
-"set ruler					" show the cursor position on status line
 set showcmd					" show partial commands in the last line of the screen
+set showmatch				" show matching braces
 set cursorline				" underline current line
-"set autoindent				
 set showmode
-"set hlsearch				" highlight searches
-"set wildmenu				" make command-line completion bash like + menu
-"set wildmode=longest:full	
+set hlsearch				" highlight searches
+set mouse=a					" enable mouse in all modes
+set wildmenu				" make command mode (:) completion bash-like
+set wildmode=longest:full	" complete only until point of ambiguity
+
 
 " Tab setting, by default is 4 spaces
 set tabstop=4

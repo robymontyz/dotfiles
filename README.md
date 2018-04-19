@@ -70,7 +70,7 @@ Suggestions and improvements are [welcome](https://github.com/robymontyz/dotfile
 
 ## Author
 
-[twitter/robymontyz](http://twitter.com/robymontyz "Follow @robymontyz on Twitter")
+ Follow me on Twitter: [![twitter](https://img.shields.io/twitter/follow/espadrine.svg?style=social&label=@robymontyz)](https://twitter.com/robymontyz)
 
 ## Thanks to…
 

@@ -1,3 +1,5 @@
+# Bash configuration file
+
 # color ls
 # (to customize colors add LSCOLORS var)
 export CLICOLOR=1

@@ -26,7 +26,7 @@ cp -fp ~/.inputrc ${BACKUPDIR}/inputrc
 cp -fp ~/.vimrc ${BACKUPDIR}/vimrc
 # NB: If the source_file ends in a /, the contents of the directory are copied rather than the directory itself
 # NB2: create dir tree first! $_ is the last argument of previous command
-mkdir -p ${BACKUPDIR}/vim/ && cp -Rfp ~/.vim/spell/ $_
+mkdir -p ${BACKUPDIR}/vim/ && cp -Rfp ~/.vim/ $_
 
 # homebrew formulae installed
 # check if homebrew is installed
@@ -51,6 +51,9 @@ gpg --export-ownertrust > ${BACKUPDIR}/gnupg/ownertrust.txt
 
 # personal scripts
 mkdir -p ${BACKUPDIR}/scripts/ && cp -Rfp ~/.scripts/ $_
+
+# themes for various apps
+mkdir -p ${BACKUPDIR}/themes/ && cp -Rfp ~/.themes/ $_
 
 # personal launchd agents (macOS/launchd users only)
 # TODO: comment these lines if you don't want this feature

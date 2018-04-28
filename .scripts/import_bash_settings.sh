@@ -30,9 +30,9 @@ cp -fp ${BACKUPDIR}/inputrc ~/.inputrc
 
 # ViM settings
 cp -fp ${BACKUPDIR}/vimrc ~/.vimrc
-# NB: If the source_file ends in a /, the contents of the directory are copied rather than the directory itself
+# NB: If the source ends in a /, the contents of the directory are copied rather than the directory itself
 # NB2: create dir tree first! $_ is the last argument of previous command
-mkdir -p ~/.vim/spell/ && cp -Rfp ${BACKUPDIR}/vim/spell/ $_
+mkdir -p ~/.vim/ && cp -Rfp ${BACKUPDIR}/vim/ $_
 
 # install homebrew and its formulae
 # check if homebrew is installed
@@ -80,13 +80,13 @@ cp -fp ${BACKUPDIR}/LaunchAgents/com.scripts.MagpiDownload.plist ~/Library/Launc
 
 # Install 'Solarized Dark' color schemes
 # Color scheme for Terminal.app (macOS only)
-open ${BACKUPDIR}/Solarized\ Dark\ -\ Patched.terminal
+open ${BACKUPDIR}/themes/Solarized\ Dark.terminal
 echo "NB: open Terminal settings and make Solarized Dark the default theme!"; echo
 # Color scheme for Xcode (macOS only)
 # check if Xcode is installed first!
 xcode-select -p > /dev/null
 if [ $? -eq 0 ]; then
-	cp ${BACKUPDIR}/Solarized\ Dark.xccolortheme ~/Library/Developer/Xcode/UserData/FontAndColorThemes/
+	cp ${BACKUPDIR}/themes/Solarized\ Dark.xccolortheme ~/Library/Developer/Xcode/UserData/FontAndColorThemes/
 	echo "NB: open Xcode settings and make Solarized Dark the default theme!"; echo
 else
 	echo "Cannot install theme: Xcode not installed."

@@ -1,6 +1,6 @@
 # robymontyz's dotfiles
 
-![Screenshot of my shell prompt and workflow using GNU Screen](workflow.png)
+![Screenshot of my shell prompt and workflow using GNU Screen](.assets/workflow.png)
 
 ## Installation
 
@@ -21,6 +21,9 @@ You can clone/download the repository wherever you want. The script will copy th
 * ### ViM
 	* `.vimrc`
 	* italian spelling dictionary
+	* *Solarized Dark* theme
+	* plugins:
+		- [Smart Tabs](https://www.vim.org/scripts/script.php?script_id=231)
 
 * ### Homebrew
 	* install [Homebrew](https://brew.sh), if not installed yet
@@ -78,5 +81,7 @@ Suggestions and improvements are [welcome](https://github.com/robymontyz/dotfile
 * [sharfah](https://github.com/sharfah/dotfiles) and his fantastic [blog posts](http://fahdshariff.blogspot.it/2011/03/my-bash-profile-part-i.html)
 * [mathiasbynens](https://github.com/mathiasbynens/dotfiles) for this README
 * [paulirish](https://github.com/paulirish/dotfiles)
+* [Michael Geddes](https://www.vim.org/scripts/script.php?script_id=231) for Smart Tabs plugin for ViM
+* [Ethan Schoonover - altercation](https://github.com/altercation/vim-colors-solarized) for creating *Solarized Dark* and its ViM version
 * [mbadolato](https://github.com/mbadolato/iTerm2-Color-Schemes) for *Solarized Dark* Terminal.app theme
 * [ArtSabintsev](https://github.com/ArtSabintsev/Solarized-Dark-for-Xcode) for *Solarized Dark* XCode theme

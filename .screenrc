@@ -1,18 +1,20 @@
+# GNU Screen configuration file
+
 # Don't display copyright page at startup
 startup_message off
 
 # Bindings
-bind = resize =				# add bind: equally resize all regions
+bind = resize =             # add bind: equally resize all regions
 
 # add bind: resize regions with ctrl-a + arrows
 # -k use termcap keyboard capability name
-bind -k kl resize -h +3		# resize left
-bind -k kr resize -h -3		# resize right
-bind -k ku resize -v -3		# resize up
-bind -k kd resize -v +3		# resize down
+bind -k kl resize -h +3     # resize left
+bind -k kr resize -h -3     # resize right
+bind -k ku resize -v -3     # resize up
+bind -k kd resize -v +3     # resize down
 
-bind S						# remove bind: split horizontally
-bind - split				# add bind: split horizontally
+bind S                      # remove bind: split horizontally
+bind - split                # add bind: split horizontally
 
 # add bind: moves between regions with ctrl-b + arrows
 # ctrl-b recall the class 'rsz': kl,kr,ku,kd are the possible cmds on it
@@ -57,11 +59,14 @@ hardstatus alwayslastline "%{=b Yk}[%H] %L=%-Lw%45L>%{= bW}%n%f %t%{-}%+Lw%-13=[
 altscreen 'on'
 
 # mouse tracking allows to switch region focus by clicking
-defmousetrack on
-mousetrack on
+#defmousetrack on
+#mousetrack on
 
 # add terminal capabilities
-#termcapinfo xterm* ti@:te@			# fix scrolling
+term screen-256color
+#termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:XT'
+#termcapinfo xterm* ti@:te@     # fix scrolling
+#defbce on
 
 # creating default layout
 layout autosave on

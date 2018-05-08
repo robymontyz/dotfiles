@@ -16,8 +16,8 @@ set wildmode=longest:full       " complete only until point of ambiguity
 set cryptmethod=blowfish2       " strongest encryption method for writing a locked file (using ':X')
 set backspace=indent,eol,start  " backspace anything
 set scrolloff=4                 " number of lines above and below cursor when scrolling
-set textwidth=80                " max length of a line before wrapping it
-set colorcolumn=+1              " highlight column after 'textwidth'
+"set textwidth=80               " max length of a line before wrapping it
+set colorcolumn=74              " highlight column after 'textwidth'
 
 " display tabs, trailing spaces and other special characters
 " :set list/list! to toggle

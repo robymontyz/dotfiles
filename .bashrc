@@ -21,12 +21,12 @@ export GPG_TTY=$(tty)
 export MBOX='~/.mbox'
 
 # shell options ("shopt -p" for a complete list)
-shopt -s cdspell    # correct dir spelling errors on cd
-shopt -s cmdhist    # save multi-line commands as one command
-shopt -s histappend # append to the history file when shell exit
+shopt -s cdspell      # correct dir spelling errors on cd
+shopt -s cmdhist      # save multi-line commands as one command
+#shopt -s histappend  # append to the history file when shell exit
 # not available in macOS
-#shopt -s autocd    # if a command is a dir name, cd to it
-#shopt -s dirspell  # correct dir spelling errors on completion
+#shopt -s autocd      # if a command is a dir name, cd to it
+#shopt -s dirspell    # correct dir spelling errors on completion
 
 # highlighting inside man and less pages
 export LESS_TERMCAP_mb=$'\E[1;31m'    # begin blinking; (?)
@@ -43,9 +43,8 @@ export LESS_TERMCAP_us=$'\E[4;36m'    # begin underline; arguments
 alias lsusb='system_profiler SPUSBDataType'
 # (l)ong, (a)ll entries, (h)uman-readable, color (G)
 alias la='ls -lahG'
-# search for git projects and show their status
-alias ggitstat='find ~ -name .git -exec git status {} \;'
-
+# search for all git projects in user home folder and show their statuses
+alias ggits='find -L ~ -type d -name .git -print -exec bash -c '\''cd -L $0 && cd .. && git status -s && echo'\'' {} \; -prune'
 
 # ======== Functions ========
 # moves file to ~/.Trash (use instead of rm)
@@ -99,25 +98,23 @@ chksum(){
 		return 1
 	fi
 
-	if [[ $# -eq 3 ]] && [[ $1 =~ ^(1|224|256|384|512|512224|512256)$ ]]; then
+	if [[ $# -eq 3 ]] && [[ $1 =~ ^(1|224|256|384|512|512224|512256)$ ]] && [[ -f $2 ]]; then
 		alg="$1"
 		file="$2"
 		sha="$3"
-	elif [ $# -eq 2 ]; then
+	elif [[ $# -eq 2 ]] && [[ -f $1 ]]; then
 		alg='1'
 		file="$1"
 		sha="$2"
 	else
-		echo "Not a valid SHA algorithm."
+		echo "File or SHA algorithm are not valid."
 		return 1
 	fi
 
-	shasum -a "$alg" "$file" |
-	while read -r sum _ ; do
-		[[ $sum == $(echo "$sha" | tr '[:upper:]' '[:lower:]') ]]\
-			&& echo "sha1 identical" \
-			|| echo "WARNING: sha1 NOT identical!"
-	done
+	sum=$(shasum -a "$alg" "$file" | cut -d " " -f 1)
+	[[ $sum == $(echo "$sha" | tr '[:upper:]' '[:lower:]') ]]\
+		&& echo "sha1 identical" \
+		|| echo "WARNING: sha1 NOT identical!"
 }
 
 
@@ -132,7 +129,7 @@ BORANGE=$'\e[33;1m'
 BBLUE=$'\e[34;1m'
 NONE=$'\e[m'
 
-# trims long paths down to 80 chars
+# trims long paths down to 30 chars
 # Automatically trim long paths in the prompt (requires Bash 4.x)
 #PROMPT_DIRTRIM=2
 _get_path(){
@@ -140,9 +137,9 @@ _get_path(){
 	local len=${#x}
 	local max=30
 	if [ $len -gt $max ]; then
-		echo "...${x:((len-max+3))}"
+		mydir="...${x:((len-max+3))}"
 	else
-		echo "${x}"
+		mydir="${x}"
 	fi
 }
 
@@ -150,9 +147,9 @@ _get_path(){
 _get_exit_status(){
 	local es=$?
 	if [ $es -eq 0 ]; then
-		echo "${GREEN}${es}${NONE}"
+		exit_status="${GREEN}${es}${NONE}"
 	else
-		echo "${RED}${es}${NONE}"
+		exit_status="${RED}${es}${NONE}"
 	fi
 }
 
@@ -169,11 +166,8 @@ fi
 HOST_COLOR="${BBLUE}"
 
 # executed everytime before bash show prompt
-PROMPT_COMMAND='exit_status=$(_get_exit_status);\
-mydir=$(_get_path);\
-history -a'
-#history -c;\
-#history -r'
+PROMPT_COMMAND="_get_exit_status;_get_path;history -a${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
+#history -c;history -r"
 
 PS1='[\[${BOLD}\]\t\[${NONE}\]] \
 \[${USER_COLOR}\]\u\[${NONE}\]@\[${HOST_COLOR}\]\h:\

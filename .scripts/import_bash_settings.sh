@@ -67,6 +67,9 @@ else
 	echo "No formulae previously installed (or exported)"
 	echo "Launch 'brew leaves > ${BACKUPDIR}/brew_installed.txt' to export"
 fi
+# homebrew settings
+brew analytics off    # opt-out from analytics
+
 
 # git settings
 cp -fp ${BACKUPDIR}/gitconfig ~/.gitconfig

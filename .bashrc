@@ -1,9 +1,18 @@
 # Bash configuration file
 
+# _OS_NAME="$(uname -s)"
+# bash set $OSTYPE, I can check it to know OS
+
 # ======== Options ========
 # colored ls output
-# (for customization add LSCOLORS var)
-export CLICOLOR=1
+if [[ "${OSTYPE}" == "darwin"* ]]; then
+	# under macOS
+	# (for customization add LSCOLORS var)
+	export CLICOLOR=1
+elif [[ "${OSTYPE}" == "linux"* ]]; then
+	# under Linux
+	alias ls='ls --color=auto'
+fi
 
 # color grep matches (auto: no color when piping to other cmds)
 # (for customization add GREP_COLOR var)
@@ -24,23 +33,28 @@ export MBOX='~/.mbox'
 shopt -s cdspell      # correct dir spelling errors on cd
 shopt -s cmdhist      # save multi-line commands as one command
 #shopt -s histappend  # append to the history file when shell exit
-# not available in macOS
-#shopt -s autocd      # if a command is a dir name, cd to it
-#shopt -s dirspell    # correct dir spelling errors on completion
+if [[ "${OSTYPE}" == "linux"* ]]; then
+	# not available in macOS
+	shopt -s autocd      # if a command is a dir name, cd to it
+	shopt -s dirspell    # correct dir spelling errors on completion
+fi
 
 # highlighting inside man and less pages
-export LESS_TERMCAP_mb=$'\E[1;31m'    # begin blinking; (?)
-export LESS_TERMCAP_md=$'\E[1;34m'    # begin bold; titles and keywords
-export LESS_TERMCAP_me=$'\E[0m'       # end mode; text
-export LESS_TERMCAP_se=$'\E[0m'       # end standout-mode (?)
-export LESS_TERMCAP_so=$'\E[0;100m'   # begin standout-mode; info line
-export LESS_TERMCAP_ue=$'\E[0m'       # end underline; text
-export LESS_TERMCAP_us=$'\E[4;36m'    # begin underline; arguments
+#export LESS_TERMCAP_mb=$'\E[1;31m'    # begin blinking; (?)
+#export LESS_TERMCAP_md=$'\E[1;34m'    # begin bold; titles and keywords
+#export LESS_TERMCAP_me=$'\E[0m'       # end mode; text
+#export LESS_TERMCAP_se=$'\E[0m'       # end standout-mode (?)
+#export LESS_TERMCAP_so=$'\E[0;100m'   # begin standout-mode; info line
+#export LESS_TERMCAP_ue=$'\E[0m'       # end underline; text
+#export LESS_TERMCAP_us=$'\E[4;36m'    # begin underline; arguments
 
 
 # ======== Aliases ========
-# output lsusb-like
-alias lsusb='system_profiler SPUSBDataType'
+if [[ "${OSTYPE}" == "darwin"* ]]; then
+	# only in macOS
+	# output lsusb-like
+	alias lsusb='system_profiler SPUSBDataType'
+fi
 # (l)ong, (a)ll entries, (h)uman-readable, color (G)
 alias la='ls -lahG'
 # search for all git projects in user home folder and show their statuses
@@ -49,7 +63,7 @@ alias ggits='find -L ~ -type d -name .git -print -exec bash -c '\''cd -L $0 && c
 # ======== Functions ========
 # moves file to ~/.Trash (use instead of rm)
 trash(){
-	if [ $# -eq 0 ]; then
+	if [[ $# -eq 0 ]]; then
 		echo "Usage: trash <file> ..."
 		return 1
 	fi
@@ -57,7 +71,7 @@ trash(){
 	for FILE in "$@"; do
 		local DATE=$(date +%Y%m%d%H%M%S)
 		# if already in trash move it in a new folder with date
-		if [ -f "${HOME}/.Trash/${FILE}" ]; then
+		if [[ -f "${HOME}/.Trash/${FILE}" ]]; then
 			mkdir "${HOME}/.Trash/${DATE}"
 			mv "${FILE}" ${HOME}/.Trash/${DATE}
 			echo "${FILE} trashed in ${DATE}/!"
@@ -70,7 +84,7 @@ trash(){
 
 # Make a directory and change to it (mkdir + cd)
 mkcd() {
-	if [ $# -ne 1 ]; then
+	if [[ $# -ne 1 ]]; then
 		echo "Usage: mkcd <dir>"
 		return 1
 	else
@@ -80,7 +94,7 @@ mkcd() {
 
 # Swap two files
 swap(){
-	if [ $# -ne 2 ]; then
+	if [[ $# -ne 2 ]]; then
 		echo "Usage: swap <file1> <file2>"
 		return 1
 	fi
@@ -92,7 +106,7 @@ swap(){
 
 # Calculate SHA and check if it is equal to a user specified one
 chksum(){
-	if [ $# -lt 2 ]; then
+	if [[ $# -lt 2 ]]; then
 		echo "Usage: chksum [1,224,256,384,512,512224,512256] <file> <sha>"
 		echo "Specify number to choose corresponding algorithm (default: 1)"
 		return 1
@@ -136,7 +150,7 @@ _get_path(){
 	local x=$(pwd | sed -e "s:$HOME:~:")
 	local len=${#x}
 	local max=30
-	if [ $len -gt $max ]; then
+	if [[ $len -gt $max ]]; then
 		mydir="...${x:((len-max+3))}"
 	else
 		mydir="${x}"
@@ -146,14 +160,14 @@ _get_path(){
 # prints a colour coded exit status
 _get_exit_status(){
 	local es=$?
-	if [ $es -eq 0 ]; then
+	if [[ $es -eq 0 ]]; then
 		exit_status="${GREEN}${es}${NONE}"
 	else
 		exit_status="${RED}${es}${NONE}"
 	fi
 }
 
-if [ $UID -eq 0 ]; then
+if [[ $UID -eq 0 ]]; then
 	# root user
 	USER_COLOR="${BRED}"
 else

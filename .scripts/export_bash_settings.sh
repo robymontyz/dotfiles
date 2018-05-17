@@ -21,12 +21,13 @@
 
 # TODO: choose your default BACKUDIR here
 BACKUPDIR=""
+_OS_NAME="$(uname -s)"
 
-if [ $# -eq 0 ] && [ -d ${BACKUPDIR} ]; then
+if [[ $# -eq 0 ]] && [[ -d ${BACKUPDIR} ]]; then
 	echo "Using default backup dir: ${BACKUPDIR}"; echo
-elif [ $# -eq 1 ] && [ -d $1 ]; then
+elif [[ $# -eq 1 ]] && [[ -d $1 ]]; then
 	BACKUPDIR=$1
-elif ! [ -d ${BACKUPDIR} ] || ! [ -d $1 ]; then
+elif ! [[ -d ${BACKUPDIR} ]] || ! [[ -d $1 ]]; then
 	echo "Invalid directory" >&2
 	exit 1
 else
@@ -45,14 +46,33 @@ cp -fp ~/.vimrc ${BACKUPDIR}/vimrc
 # NB2: create dir tree first! $_ is the last argument of previous command
 mkdir -p ${BACKUPDIR}/vim/ && cp -Rfp ~/.vim/ $_
 
-# homebrew formulae installed
-# check if homebrew is installed
-brew help > /dev/null
-if [ $? -ne 0 ]; then
-	# install homebrew!
-	echo "Homebrew not installed" >&2
-else
-	brew leaves > ${BACKUPDIR}/brew_installed.txt
+# export specific setting on macOS
+if [[ "${_OS_NAME}" ==  "Darwin" ]]; then
+	# ======== macOS ONLY ======== #
+	echo "macOS installed. Loading specific setting..."
+
+	# ======== Homebrew ======== #
+	# homebrew formulae installed
+	# check if homebrew is installed
+	brew help > /dev/null
+	if [[ $? -ne 0 ]]; then
+		# install homebrew!
+		echo "Homebrew not installed" >&2
+	else
+		brew leaves > ${BACKUPDIR}/brew_installed.txt
+	fi
+
+	# ======== launchd ======== #
+	# personal launchd agents (macOS/launchd users only)
+	# TODO: comment these lines if you don't want this feature
+	mkdir -p ${BACKUPDIR}/LaunchAgents/
+	cp -fp ~/Library/LaunchAgents/com.scripts.ExportBashSettings.plist ${BACKUPDIR}/LaunchAgents/
+	cp -fp ~/Library/LaunchAgents/com.scripts.HomebrewUpdate.plist ${BACKUPDIR}/LaunchAgents/
+	cp -fp ~/Library/LaunchAgents/com.scripts.MagpiDownload.plist ${BACKUPDIR}/LaunchAgents/
+
+	# ======== Themes ======== #
+	# themes for various macOS apps
+	mkdir -p ${BACKUPDIR}/themes/ && cp -Rfp ~/.themes/ $_
 fi
 
 # git settings
@@ -66,17 +86,12 @@ cp -fp ~/.screenrc ${BACKUPDIR}/screenrc
 mkdir -p ${BACKUPDIR}/gnupg/ && cp -fp ~/.gnupg/pubring.kbx $_
 gpg --export-ownertrust > ${BACKUPDIR}/gnupg/ownertrust.txt
 
+# ssh/sshd settings and keys
+mkdir -p ${BACKUPDIR}/ssh/ && cp -Rfp ~/.ssh/ $_
+mkdir -p ${BACKUPDIR}/sshd/ && cp -fp /etc/ssh/sshd_config $_
+
 # personal scripts
 mkdir -p ${BACKUPDIR}/scripts/ && cp -Rfp ~/.scripts/ $_
-
-# themes for various apps
-mkdir -p ${BACKUPDIR}/themes/ && cp -Rfp ~/.themes/ $_
-
-# personal launchd agents (macOS/launchd users only)
-# TODO: comment these lines if you don't want this feature
-mkdir -p ${BACKUPDIR}/LaunchAgents/ && cp -fp ~/Library/LaunchAgents/com.scripts.ExportBashSettings.plist $_
-cp -fp ~/Library/LaunchAgents/com.scripts.HomebrewUpdate.plist ${BACKUPDIR}/LaunchAgents/
-cp -fp ~/Library/LaunchAgents/com.scripts.MagpiDownload.plist ${BACKUPDIR}/LaunchAgents/
 
 # Crontab file
 # TODO: comment these lines if you are using launchd

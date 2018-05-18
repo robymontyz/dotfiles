@@ -36,15 +36,15 @@ else
 fi
 
 # bash settings
-cp -fp ~/.bash_profile ${BACKUPDIR}/bash_profile
-cp -fp ~/.bashrc ${BACKUPDIR}/bashrc
-cp -fp ~/.inputrc ${BACKUPDIR}/inputrc
+cp -fp ~/.bash_profile ${BACKUPDIR}/.bash_profile
+cp -fp ~/.bashrc ${BACKUPDIR}/.bashrc
+cp -fp ~/.inputrc ${BACKUPDIR}/.inputrc
 
 # ViM settings
-cp -fp ~/.vimrc ${BACKUPDIR}/vimrc
+cp -fp ~/.vimrc ${BACKUPDIR}/.vimrc
 # NB: If the source_file ends in a /, the contents of the directory are copied rather than the directory itself
 # NB2: create dir tree first! $_ is the last argument of previous command
-mkdir -p ${BACKUPDIR}/vim/ && cp -Rfp ~/.vim/ $_
+mkdir -p ${BACKUPDIR}/.vim/ && cp -Rfp ~/.vim/ $_
 
 # export specific setting on macOS
 if [[ "${_OS_NAME}" ==  "Darwin" ]]; then
@@ -72,26 +72,26 @@ if [[ "${_OS_NAME}" ==  "Darwin" ]]; then
 
 	# ======== Themes ======== #
 	# themes for various macOS apps
-	mkdir -p ${BACKUPDIR}/themes/ && cp -Rfp ~/.themes/ $_
+	mkdir -p ${BACKUPDIR}/.themes/ && cp -Rfp ~/.themes/ $_
 fi
 
 # git settings
-cp -fp ~/.gitconfig ${BACKUPDIR}/gitconfig
+cp -fp ~/.gitconfig ${BACKUPDIR}/.gitconfig
 mkdir -p ${BACKUPDIR}/config/git/ && cp -fp ~/.config/git/ignore $_
 
 # screen settings
-cp -fp ~/.screenrc ${BACKUPDIR}/screenrc
+cp -fp ~/.screenrc ${BACKUPDIR}/.screenrc
 
 # gpg settings
-mkdir -p ${BACKUPDIR}/gnupg/ && cp -fp ~/.gnupg/pubring.kbx $_
-gpg --export-ownertrust > ${BACKUPDIR}/gnupg/ownertrust.txt
+mkdir -p ${BACKUPDIR}/.gnupg/ && cp -fp ~/.gnupg/pubring.kbx $_
+gpg --export-ownertrust > ${BACKUPDIR}/.gnupg/ownertrust.txt
 
 # ssh/sshd settings and keys
-mkdir -p ${BACKUPDIR}/ssh/ && cp -Rfp ~/.ssh/ $_
+mkdir -p ${BACKUPDIR}/.ssh/ && cp -Rfp ~/.ssh/ $_
 mkdir -p ${BACKUPDIR}/sshd/ && cp -fp /etc/ssh/sshd_config $_
 
 # personal scripts
-mkdir -p ${BACKUPDIR}/scripts/ && cp -Rfp ~/.scripts/ $_
+mkdir -p ${BACKUPDIR}/.scripts/ && cp -Rfp ~/.scripts/ $_
 
 # Crontab file
 # TODO: comment these lines if you are using launchd

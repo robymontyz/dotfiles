@@ -41,7 +41,7 @@ echo "Backing up existing settings..."
 if ! [[ -d ${BACKUPDIR}/bak ]]; then
 	mkdir ${BACKUPDIR}/bak
 fi
-${BACKUPDIR}/scripts/export_bash_settings.sh ${BACKUPDIR}/bak
+${BACKUPDIR}/.scripts/export_bash_settings.sh ${BACKUPDIR}/bak
 
 # install specific setting on macOS
 if [[ "${_OS_NAME}" ==  "Darwin" ]]; then
@@ -70,11 +70,11 @@ if [[ "${_OS_NAME}" ==  "Darwin" ]]; then
 
 	# ======== Plugins ======== #
 	# QuickLook plugins (macOS only)
-	mkdir -p ~/Library/QuickLook && cp -Rfp ${BACKUPDIR}/plugins/QL/ $_
+	mkdir -p ~/Library/QuickLook && cp -Rfp ${BACKUPDIR}/.plugins/QL/ $_
 	# reload QuickLook plugin manager
 	qlmanage -r
 	# Privileges needed to copy plugins system-wide
-	#mkdir -p /Library/QuickLook && cp -Rfp ${BACKUPDIR}/plugins/QL/ $_
+	#mkdir -p /Library/QuickLook && cp -Rfp ${BACKUPDIR}/.plugins/QL/ $_
 
 	# ======== launchd ======== #
 	# personal launchd agents (macOS/launchd users only)
@@ -87,13 +87,13 @@ if [[ "${_OS_NAME}" ==  "Darwin" ]]; then
 	# ======== Themes ======== #
 	# Install 'Solarized Dark' color schemes
 	# Color scheme for Terminal.app (macOS only)
-	open ${BACKUPDIR}/themes/Solarized\ Dark.terminal
+	open ${BACKUPDIR}/.themes/Solarized\ Dark.terminal
 	echo "NB: open Terminal settings and make Solarized Dark the default theme!"; echo
 	# Color scheme for Xcode (macOS only)
 	# check if Xcode is installed first!
 	xcode-select -p > /dev/null
 	if [[ $? -eq 0 ]]; then
-		cp ${BACKUPDIR}/themes/Solarized\ Dark.xccolortheme ~/Library/Developer/Xcode/UserData/FontAndColorThemes/
+		cp ${BACKUPDIR}/.themes/Solarized\ Dark.xccolortheme ~/Library/Developer/Xcode/UserData/FontAndColorThemes/
 		echo "NB: open Xcode settings and make Solarized Dark the default theme!"; echo
 	else
 		echo "Cannot install theme: Xcode not installed."
@@ -101,35 +101,35 @@ if [[ "${_OS_NAME}" ==  "Darwin" ]]; then
 fi
 
 # bash settings
-cp -fp ${BACKUPDIR}/bash_profile ~/.bash_profile
-cp -fp ${BACKUPDIR}/bashrc ~/.bashrc
-cp -fp ${BACKUPDIR}/inputrc ~/.inputrc
+cp -fp ${BACKUPDIR}/.bash_profile ~/.bash_profile
+cp -fp ${BACKUPDIR}/.bashrc ~/.bashrc
+cp -fp ${BACKUPDIR}/.inputrc ~/.inputrc
 
 # ViM settings
-cp -fp ${BACKUPDIR}/vimrc ~/.vimrc
+cp -fp ${BACKUPDIR}/.vimrc ~/.vimrc
 # NB: If the source ends in a /, the contents of the directory are copied rather than the directory itself
 # NB2: create dir tree first! $_ is the last argument of previous command
-mkdir -p ~/.vim/ && cp -Rfp ${BACKUPDIR}/vim/ $_
+mkdir -p ~/.vim/ && cp -Rfp ${BACKUPDIR}/.vim/ $_
 
 # git settings
-cp -fp ${BACKUPDIR}/gitconfig ~/.gitconfig
+cp -fp ${BACKUPDIR}/.gitconfig ~/.gitconfig
 mkdir -p ~/.config/git/ && cp -fp ${BACKUPDIR}/config/git/ignore $_
 
 # screen settings
-cp -fp ${BACKUPDIR}/screenrc ~/.screenrc
+cp -fp ${BACKUPDIR}/.screenrc ~/.screenrc
 
 # gpg settings
-mkdir -p ~/.gnupg/ && cp -fp ${BACKUPDIR}/gnupg/pubring.kbx $_
+mkdir -p ~/.gnupg/ && cp -fp ${BACKUPDIR}/.gnupg/pubring.kbx $_
 # possibly recreate trustdb if corrupted
 #mv ~/.gnupg/trustdb.gpg ~/.gnupg/trustdb.OLD
-#gpg --import-ownertrust < ${BACKUPDIR}/gnupg/ownertrust.txt
+#gpg --import-ownertrust < ${BACKUPDIR}/.gnupg/ownertrust.txt
 
 # ssh/sshd settings and keys
-mkdir -p ~/.ssh/ && cp -Rfp ${BACKUPDIR}/ssh/ $_
+mkdir -p ~/.ssh/ && cp -Rfp ${BACKUPDIR}/.ssh/ $_
 cp -fp ${BACKUPDIR}/sshd/sshd_config /etc/ssh/sshd_config
 
 # personal scripts
-mkdir -p ~/.scripts/ && cp -Rfp ${BACKUPDIR}/scripts/ $_
+mkdir -p ~/.scripts/ && cp -Rfp ${BACKUPDIR}/.scripts/ $_
 
 # Crontab file
 # TODO: comment these lines if you are using launchd

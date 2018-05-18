@@ -1,6 +1,7 @@
 # .gitignore project-specific
 # delete blocks with language sources not on your project
 # see here for more: https://github.com/github/gitignore
+bak/
 
 # Packages #
 ############

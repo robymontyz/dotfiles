@@ -55,7 +55,7 @@ if [[ "${_OS_NAME}" ==  "Darwin" ]]; then
 	if [[ $? -ne 0 ]]; then
 		# install homebrew
 		echo "Installing Homebrew..."
-		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+		ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	fi
 	# install all formulae
 	if [[ -f ${BACKUPDIR}/brew_installed.txt ]]; then
@@ -70,19 +70,17 @@ if [[ "${_OS_NAME}" ==  "Darwin" ]]; then
 
 	# ======== Plugins ======== #
 	# QuickLook plugins (macOS only)
-	mkdir -p ~/Library/QuickLook && cp -Rfp ${BACKUPDIR}/.plugins/QL/ $_
+	rsync -a ${BACKUPDIR}/.plugins/QL/ ~/Library/QuickLook/
 	# reload QuickLook plugin manager
 	qlmanage -r
-	# Privileges needed to copy plugins system-wide
-	#mkdir -p /Library/QuickLook && cp -Rfp ${BACKUPDIR}/.plugins/QL/ $_
 
 	# ======== launchd ======== #
 	# personal launchd agents (macOS/launchd users only)
 	# TODO: comment these lines if you don't want this feature
 	# no need to create dir tree, already present on default
-	cp -fp ${BACKUPDIR}/LaunchAgents/com.scripts.ExportBashSettings.plist ~/Library/LaunchAgents/
-	cp -fp ${BACKUPDIR}/LaunchAgents/com.scripts.HomebrewUpdate.plist ~/Library/LaunchAgents/
-	cp -fp ${BACKUPDIR}/LaunchAgents/com.scripts.MagpiDownload.plist ~/Library/LaunchAgents/
+	rsync -a ${BACKUPDIR}/LaunchAgents/com.scripts.ExportBashSettings.plist ~/Library/LaunchAgents/
+	rsync -a ${BACKUPDIR}/LaunchAgents/com.scripts.HomebrewUpdate.plist ~/Library/LaunchAgents/
+	rsync -a ${BACKUPDIR}/LaunchAgents/com.scripts.MagpiDownload.plist ~/Library/LaunchAgents/
 
 	# ======== Themes ======== #
 	# Install 'Solarized Dark' color schemes
@@ -93,7 +91,7 @@ if [[ "${_OS_NAME}" ==  "Darwin" ]]; then
 	# check if Xcode is installed first!
 	xcode-select -p > /dev/null
 	if [[ $? -eq 0 ]]; then
-		cp ${BACKUPDIR}/.themes/Solarized\ Dark.xccolortheme ~/Library/Developer/Xcode/UserData/FontAndColorThemes/
+		rsync -a ${BACKUPDIR}/.themes/Solarized\ Dark.xccolortheme ~/Library/Developer/Xcode/UserData/FontAndColorThemes/
 		echo "NB: open Xcode settings and make Solarized Dark the default theme!"; echo
 	else
 		echo "Cannot install theme: Xcode not installed."
@@ -101,35 +99,34 @@ if [[ "${_OS_NAME}" ==  "Darwin" ]]; then
 fi
 
 # bash settings
-cp -fp ${BACKUPDIR}/.bash_profile ~/.bash_profile
-cp -fp ${BACKUPDIR}/.bashrc ~/.bashrc
-cp -fp ${BACKUPDIR}/.inputrc ~/.inputrc
+rsync -a ${BACKUPDIR}/.bash_profile ~/.bash_profile
+rsync -a ${BACKUPDIR}/.bashrc ~/.bashrc
+rsync -a ${BACKUPDIR}/.inputrc ~/.inputrc
 
 # ViM settings
-cp -fp ${BACKUPDIR}/.vimrc ~/.vimrc
+rsync -a ${BACKUPDIR}/.vimrc ~/.vimrc
 # NB: If the source ends in a /, the contents of the directory are copied rather than the directory itself
-# NB2: create dir tree first! $_ is the last argument of previous command
-mkdir -p ~/.vim/ && cp -Rfp ${BACKUPDIR}/.vim/ $_
+rsync -a ${BACKUPDIR}/.vim/ ~/.vim/
 
 # git settings
-cp -fp ${BACKUPDIR}/.gitconfig ~/.gitconfig
-mkdir -p ~/.config/git/ && cp -fp ${BACKUPDIR}/.config/git/ignore $_
+rsync -a ${BACKUPDIR}/.gitconfig ~/.gitconfig
+rsync -a ${BACKUPDIR}/.config/git/ignore ~/.config/git/
 
 # screen settings
-cp -fp ${BACKUPDIR}/.screenrc ~/.screenrc
+rsync -a ${BACKUPDIR}/.screenrc ~/.screenrc
 
 # gpg settings
-mkdir -p ~/.gnupg/ && cp -fp ${BACKUPDIR}/.gnupg/pubring.kbx $_
+rsync -a ${BACKUPDIR}/.gnupg/pubring.kbx ~/.gnupg/
 # possibly recreate trustdb if corrupted
 #mv ~/.gnupg/trustdb.gpg ~/.gnupg/trustdb.OLD
 #gpg --import-ownertrust < ${BACKUPDIR}/.gnupg/ownertrust.txt
 
 # ssh/sshd settings and keys
-mkdir -p ~/.ssh/ && cp -Rfp ${BACKUPDIR}/.ssh/ $_
-cp -fp ${BACKUPDIR}/sshd/sshd_config /etc/ssh/sshd_config
+rsync -a ${BACKUPDIR}/.ssh/ ~/.ssh/
+rsync -a ${BACKUPDIR}/sshd/sshd_config /etc/ssh/sshd_config
 
 # personal scripts
-mkdir -p ~/.scripts/ && cp -Rfp ${BACKUPDIR}/.scripts/ $_
+rsync -a ${BACKUPDIR}/.scripts/ ~/.scripts/
 
 # Crontab file
 # TODO: comment these lines if you are using launchd

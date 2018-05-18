@@ -36,15 +36,15 @@ else
 fi
 
 # bash settings
-cp -fp ~/.bash_profile ${BACKUPDIR}/.bash_profile
-cp -fp ~/.bashrc ${BACKUPDIR}/.bashrc
-cp -fp ~/.inputrc ${BACKUPDIR}/.inputrc
+rsync -a ~/.bash_profile ${BACKUPDIR}/.bash_profile
+rsync -a ~/.bashrc ${BACKUPDIR}/.bashrc
+rsync -a ~/.inputrc ${BACKUPDIR}/.inputrc
 
 # ViM settings
-cp -fp ~/.vimrc ${BACKUPDIR}/.vimrc
+rsync -a ~/.vimrc ${BACKUPDIR}/.vimrc
 # NB: If the source_file ends in a /, the contents of the directory are copied rather than the directory itself
 # NB2: create dir tree first! $_ is the last argument of previous command
-mkdir -p ${BACKUPDIR}/.vim/ && cp -Rfp ~/.vim/ $_
+rsync -a ~/.vim/ ${BACKUPDIR}/.vim/
 
 # export specific setting on macOS
 if [[ "${_OS_NAME}" ==  "Darwin" ]]; then
@@ -65,33 +65,37 @@ if [[ "${_OS_NAME}" ==  "Darwin" ]]; then
 	# ======== launchd ======== #
 	# personal launchd agents (macOS/launchd users only)
 	# TODO: comment these lines if you don't want this feature
-	mkdir -p ${BACKUPDIR}/LaunchAgents/
-	cp -fp ~/Library/LaunchAgents/com.scripts.ExportBashSettings.plist ${BACKUPDIR}/LaunchAgents/
-	cp -fp ~/Library/LaunchAgents/com.scripts.HomebrewUpdate.plist ${BACKUPDIR}/LaunchAgents/
-	cp -fp ~/Library/LaunchAgents/com.scripts.MagpiDownload.plist ${BACKUPDIR}/LaunchAgents/
+	rsync -a ~/Library/LaunchAgents/com.scripts.ExportBashSettings.plist ${BACKUPDIR}/LaunchAgents/
+	rsync -a ~/Library/LaunchAgents/com.scripts.HomebrewUpdate.plist ${BACKUPDIR}/LaunchAgents/
+	rsync -a ~/Library/LaunchAgents/com.scripts.MagpiDownload.plist ${BACKUPDIR}/LaunchAgents/
 
 	# ======== Themes ======== #
 	# themes for various macOS apps
-	mkdir -p ${BACKUPDIR}/.themes/ && cp -Rfp ~/.themes/ $_
+	rsync -a ~/.themes/ ${BACKUPDIR}/.themes/
+	
+	# ======== Plugins ======== #
+	# Personal QuickLook plugins (macOS only)
+	rsync -a ~/Library/QuickLook/ ${BACKUPDIR}/.plugins/QL/
+
 fi
 
 # git settings
-cp -fp ~/.gitconfig ${BACKUPDIR}/.gitconfig
-mkdir -p ${BACKUPDIR}/config/git/ && cp -fp ~/.config/git/ignore $_
+rsync -a ~/.gitconfig ${BACKUPDIR}/.gitconfig
+rsync -a ~/.config/git/ignore ${BACKUPDIR}/config/git/
 
 # screen settings
-cp -fp ~/.screenrc ${BACKUPDIR}/.screenrc
+rsync -a ~/.screenrc ${BACKUPDIR}/.screenrc
 
 # gpg settings
-mkdir -p ${BACKUPDIR}/.gnupg/ && cp -fp ~/.gnupg/pubring.kbx $_
+rsync -a ~/.gnupg/pubring.kbx ${BACKUPDIR}/.gnupg/
 gpg --export-ownertrust > ${BACKUPDIR}/.gnupg/ownertrust.txt
 
 # ssh/sshd settings and keys
-mkdir -p ${BACKUPDIR}/.ssh/ && cp -Rfp ~/.ssh/ $_
-mkdir -p ${BACKUPDIR}/sshd/ && cp -fp /etc/ssh/sshd_config $_
+rsync -a ~/.ssh/ ${BACKUPDIR}/.ssh/
+rsync -a /etc/ssh/sshd_config ${BACKUPDIR}/sshd/
 
 # personal scripts
-mkdir -p ${BACKUPDIR}/.scripts/ && cp -Rfp ~/.scripts/ $_
+rsync -a ~/.scripts/ ${BACKUPDIR}/.scripts/
 
 # Crontab file
 # TODO: comment these lines if you are using launchd

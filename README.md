@@ -2,6 +2,20 @@
 
 ![Screenshot of my shell prompt and workflow using GNU Screen](.assets/workflow.png)
 
+## Dependencies
+
+* git
+
+* rsync
+
+* screen (version >4.01, see more details below)
+
+* gpg [optional]
+
+* OpenSSH [optional]
+
+* Xcode [optional]
+
 ## Installation
 
 **Warning:** These dotfiles are suited mostly on my needs for macOS. If you want to try them, you should first fork this repository, review the code, and remove things you don’t want or need. **Use at your own risk!**
@@ -64,6 +78,12 @@ You can clone/download the repository wherever you want. The script will copy th
 
 	* `pubring.kbx`
 
+* ### SSH
+
+	* SSH keys
+
+	* `ssh_config` and `sshd_config`
+
 * ### Install and export scripts
 
 	* `import_bash_settings.sh` (see [Installation](#installation))
@@ -86,6 +106,10 @@ You can clone/download the repository wherever you want. The script will copy th
 	`import_bash_settings.sh` will install *Solarized Dark* color schemes for Terminal.app and XCode.  
 	If you don't want this feature, you can comment these lines.  
 	Same applies to `export_bash_settings.sh`.
+
+* ### QuickLook plugins (macOS only)
+
+	* [QLmarkdown](https://github.com/toland/qlmarkdow)
 
 ## Feedback
 

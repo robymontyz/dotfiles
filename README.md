@@ -68,9 +68,13 @@ You can clone/download the repository wherever you want. The script will copy th
 
 	* `.screenrc`
 
-	**Warning:** You need GNU Screen with support to vertical split:  
-		- GNU Screen >4.01 natively supports vertical splitting.  
-		- GNU Screen <4.01 may not support vertical splitting without [the patch](http://fungi.yuggoth.org/vsp4s/). Unfortunately the download link is broken.
+	**Warning**
+
+	```
+	You need GNU Screen with support to vertical split:
+	- GNU Screen >4.01 natively supports vertical splitting.	
+	- GNU Screen <4.01 may not support vertical splitting without [the patch](http://fungi.yuggoth.org/vsp4s/). Unfortunately the download link is broken.
+	```
 
 	In a standard macOS installation, GNU Screen version is probably <4.01, so I strongly recommend to install the latest version with [Homebrew](https://brew.sh).
 
@@ -90,22 +94,23 @@ You can clone/download the repository wherever you want. The script will copy th
 
 	* `export_bash_settings.sh`
 
-	#### Specify the `$BACKUPDIR` in the scripts
-	You can manually specify a backup directory where to export files with `export_bash_settings.sh` modifying `$BACKUPDIR` inside the script.  
-	Same applies to `import_bash_settings.sh`.
+	*You can manually specify a backup directory where to export files with `export_bash_settings.sh` modifying `$BACKUPDIR` inside the script.*
 
-* ### launchd agents (launchd users or macOS only)
-	`import_bash_settings.sh` will install launchd agents to start some automated script I wrote. You can find the scripts [here](https://github.com/robymontyz).  
-	If you don't want this feature, you can comment these lines.  
-	Same applies to `export_bash_settings.sh`.
+	*Same applies to `import_bash_settings.sh`.*
 
 * ### Crontab
+
 	Deprecated in favor of launchd agents.
 
+* ### launchd agents (launchd users or macOS only)
+
+	`import_bash_settings.sh` will install launchd agents to start some automated script I wrote. You can find the scripts [here](https://github.com/robymontyz).
+
+	*If you don't want this feature, you can comment these lines.*
+
 * ### Terminal.app and XCode *Solarized Dark* themes (macOS only)
+
 	`import_bash_settings.sh` will install *Solarized Dark* color schemes for Terminal.app and XCode.  
-	If you don't want this feature, you can comment these lines.  
-	Same applies to `export_bash_settings.sh`.
 
 * ### QuickLook plugins (macOS only)
 
@@ -117,7 +122,7 @@ Suggestions and improvements are [welcome](https://github.com/robymontyz/dotfile
 
 ## Author
 
- Follow me on Twitter: [![twitter](https://img.shields.io/twitter/follow/espadrine.svg?style=social&label=@robymontyz)](https://twitter.com/robymontyz)
+Follow me on Twitter: [![twitter](https://img.shields.io/twitter/follow/espadrine.svg?style=social&label=@robymontyz)](https://twitter.com/robymontyz)
 
 ## Thanks to…
 

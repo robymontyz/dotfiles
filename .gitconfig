@@ -18,10 +18,9 @@
 	b = branch
 	#############
 	#commit = commit -m         # on default, commit with message
-	c = commit -m               # commit with message
+	c = commit                  # commit with message
 	ca = commit -a              # add all file to stage and commit
 	cwm = commit                # commit without message
-	cam = commit -am            # commit all files with message
 	cd = commit --amend         # modify last commit
 	#############
 	cl = clone

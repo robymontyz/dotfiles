@@ -49,7 +49,7 @@ rsync -a ~/.vim/ ${BACKUPDIR}/.vim/
 # export specific setting on macOS
 if [[ "${_OS_NAME}" ==  "Darwin" ]]; then
 	# ======== macOS ONLY ======== #
-	echo "macOS installed. Loading specific setting..."
+	echo "macOS installed. Exporting specific setting..."
 
 	# ======== Homebrew ======== #
 	# homebrew formulae installed
@@ -75,13 +75,12 @@ if [[ "${_OS_NAME}" ==  "Darwin" ]]; then
 	
 	# ======== Plugins ======== #
 	# Personal QuickLook plugins (macOS only)
-	rsync -a ~/Library/QuickLook/ ${BACKUPDIR}/.plugins/QL/
-
+	mkdir -p ${BACKUPDIR}/.plugins/QL/ && rsync -a ~/Library/QuickLook/ $_
 fi
 
 # git settings
 rsync -a ~/.gitconfig ${BACKUPDIR}/.gitconfig
-rsync -a ~/.config/git/ignore ${BACKUPDIR}/config/git/
+mkdir -p ${BACKUPDIR}/.config/git/ && rsync -a ~/.config/git/ignore $_
 
 # screen settings
 rsync -a ~/.screenrc ${BACKUPDIR}/.screenrc

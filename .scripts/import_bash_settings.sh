@@ -38,8 +38,9 @@ fi
 
 echo "Backing up existing settings..."
 # backup existing settings before importing
-if ! [[ -d ${BACKUPDIR}/bak ]]; then
-	mkdir ${BACKUPDIR}/bak
+bak=bak"$(date "+%Y%m%d%H%M%S")"
+if ! [[ -d ${BACKUPDIR}/${bak} ]]; then
+	mkdir ${BACKUPDIR}/${bak}
 fi
 ${BACKUPDIR}/.scripts/export_bash_settings.sh ${BACKUPDIR}/bak
 
@@ -123,7 +124,7 @@ rsync -a ${BACKUPDIR}/.gnupg/pubring.kbx ~/.gnupg/
 
 # ssh/sshd settings and keys
 rsync -a ${BACKUPDIR}/.ssh/ ~/.ssh/
-rsync -a ${BACKUPDIR}/sshd/sshd_config /etc/ssh/sshd_config
+sudo rsync -a ${BACKUPDIR}/sshd/sshd_config /etc/ssh/sshd_config
 
 # personal scripts
 rsync -a ${BACKUPDIR}/.scripts/ ~/.scripts/

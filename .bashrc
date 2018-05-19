@@ -137,15 +137,18 @@ chksum(){
 BOLD=$'\e[1m'
 GREEN=$'\e[32m'
 RED=$'\e[31m'
-BRED=$'\e[31;1m'
-BGREEN=$'\e[32;1m'
-BORANGE=$'\e[33;1m'
-BBLUE=$'\e[34;1m'
+BRED=$'\e[1;31m'
+BGREEN=$'\e[1;32m'
+BORANGE=$'\e[1;33m'
+BBLUE=$'\e[1;34m'
 NONE=$'\e[m'
 
 # trims long paths down to 30 chars
 # Automatically trim long paths in the prompt (requires Bash 4.x)
-#PROMPT_DIRTRIM=2
+if [[ "$BASH_VERSION" =~ ^4 ]]; then
+	PROMPT_DIRTRIM=2
+fi
+# manual method if Bash <4.x
 _get_path(){
 	local x=$(pwd | sed -e "s:$HOME:~:")
 	local len=${#x}

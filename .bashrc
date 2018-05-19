@@ -16,7 +16,8 @@ fi
 
 # color grep matches (auto: no color when piping to other cmds)
 # (for customization add GREP_COLOR var)
-export GREP_OPTIONS='--color=auto'
+# DEPRECATED
+#export GREP_OPTIONS='--color=auto'
 
 # lines matching the previous history entry will not be saved
 # previous same history entry will be deleted
@@ -57,6 +58,7 @@ if [[ "${OSTYPE}" == "darwin"* ]]; then
 fi
 # (l)ong, (a)ll entries, (h)uman-readable, color (G)
 alias la='ls -lahG'
+alias grep='grep --color=auto'
 # search for all git projects in user home folder and show their statuses
 alias ggits='find -L ~ -type d -name .git -print -exec bash -c '\''cd -L $0 && cd .. && git status -s && echo'\'' {} \; -prune'
 

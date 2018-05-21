@@ -54,7 +54,7 @@ You can clone/download the repository wherever you want. The script will copy th
 
 	* install [Homebrew](https://brew.sh), if not installed yet
 
-	* install all the formulae specified in `brew_installed.txt`
+	* install all the formulae specified in `.install/brew`
 
 * ### Git
 
@@ -82,11 +82,15 @@ You can clone/download the repository wherever you want. The script will copy th
 
 	* `pubring.kbx`
 
+	**N.B.** *My PGP keyring, obviously, is not actually included in this repo but you can add it by yourself inside `.gpg/` folder.*
+
 * ### SSH
 
 	* SSH keys
 
 	* `ssh_config` and `sshd_config`
+
+	**N.B.** *My SSH keys, obviously, are not actually included in this repo but you can add them by yourself inside `.ssh/` folder.*
 
 * ### Install and export scripts
 

@@ -58,12 +58,12 @@ if [[ $? -eq 0 ]]; then
 			ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 		fi
 		# install all formulae
-		if [[ -f ${BACKUPDIR}/brew_installed.txt ]]; then
+		if [[ -f ${BACKUPDIR}/.install/brew ]]; then
 			echo "Installing brew formulae..."
-			brew install $(< ${BACKUPDIR}/brew_installed.txt)
+			brew install $(< ${BACKUPDIR}/.install/brew)
 		else
 			echo "No formulae previously installed (or exported)"
-			echo "Launch 'brew leaves > ${BACKUPDIR}/brew_installed.txt' to export"
+			echo "Launch 'brew leaves > ${BACKUPDIR}/.install/brew' to export"
 		fi
 		# homebrew settings
 		brew analytics off    # opt-out from analytics

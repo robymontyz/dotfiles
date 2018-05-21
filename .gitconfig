@@ -63,6 +63,8 @@
 	sl = stash list             # list all the stash entries
 	sw = stash show             # show all the changes in the stash
 	#############
+	l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+	#############
 	aliases = !git config -l | grep alias | cut -c 7-
 	snap = !git stash save 'snapshot: $(date)' && git stash apply 'stash@{0}'
 	behind = !git rev-list --left-only --count $(git bu)...HEAD

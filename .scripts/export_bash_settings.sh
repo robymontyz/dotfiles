@@ -59,8 +59,8 @@ if [[ "${_OS_NAME}" ==  "Darwin" ]]; then
 		# install homebrew!
 		echo "Homebrew not installed" >&2
 	else
-		brew leaves > ~/.install/brew
-		brew leaves > ${BACKUPDIR}/.install/brew
+		mkdir -p ~/.install/ && brew leaves > ~/.install/brew
+		mkdir -p ${BACKUPDIR}/.install/ && brew leaves > ${BACKUPDIR}/.install/brew
 	fi
 
 	# ======== launchd ======== #

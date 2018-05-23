@@ -74,11 +74,11 @@ trash(){
 		local DATE=$(date +%Y%m%d%H%M%S)
 		# if already in trash move it in a new folder with date
 		if [[ -f "${HOME}/.Trash/${FILE}" ]]; then
-			mkdir "${HOME}/.Trash/${DATE}"
-			mv "${FILE}" ${HOME}/.Trash/${DATE}
+			mkdir "${HOME}/.Trash/${DATE}" &&\
+			mv "${FILE}" ${HOME}/.Trash/${DATE} &&\
 			echo "${FILE} trashed in ${DATE}/!"
 		else
-			mv "${FILE}" "${HOME}/.Trash/"
+			mv "${FILE}" "${HOME}/.Trash/" &&\
 			echo "${FILE} trashed!"
 		fi
 	done
@@ -101,8 +101,8 @@ swap(){
 		return 1
 	fi
 	local TMPFILE=$(mktemp $(dirname "$1")/XXXXXX)
-	mv "$1" "$TMPFILE"
-	mv "$2" "$1"
+	mv "$1" "$TMPFILE" &&\
+	mv "$2" "$1" &&\
 	mv "$TMPFILE" "$2"
 }
 
@@ -180,9 +180,13 @@ else
 	USER_COLOR="${BBLUE}"
 fi
 
-# can change due to the actual connected machine
-# hostname -s
-HOST_COLOR="${BBLUE}"
+# change according to the actual connected machine
+if [[ $(hostname | tr '[:upper:]' '[:lower:]') =~ ^notebook|^desktop|^mobile ]]; then
+	# client user
+	HOST_COLOR="${BBLUE}"
+else
+	HOST_COLOR="${BRED}"
+fi
 
 # executed everytime before bash show prompt
 PROMPT_COMMAND="_get_exit_status;_get_path;history -a${PROMPT_COMMAND:+; $PROMPT_COMMAND}"

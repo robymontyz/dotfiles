@@ -96,6 +96,10 @@ if [[ $? -eq 0 ]]; then
 		else
 			echo "Cannot install theme: Xcode not installed."
 		fi
+		
+		# ======== Misc ======== #
+		# disable default automatic creation of a webserver in macOS
+		sudo apachectl stop
 	fi
 
 	# bash settings

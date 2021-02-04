@@ -7,7 +7,7 @@
 [core]
 	editor = vim
 	excludesfile = ~/.config/git/ignore
-	pager = less -+X            # fix mouse scrolling of the pager
+	#pager = less -+FX           # fix mouse scrolling of the pager
 [commit]
 	gpgSign = true
 [alias]
@@ -20,7 +20,6 @@
 	#commit = commit -m         # on default, commit with message
 	c = commit                  # commit with message
 	ca = commit -a              # add all file to stage and commit
-	cwm = commit                # commit without message
 	cd = commit --amend         # modify last commit
 	#############
 	cl = clone
@@ -63,9 +62,10 @@
 	sl = stash list             # list all the stash entries
 	sw = stash show             # show all the changes in the stash
 	#############
-	l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+	l = log --pretty=format:"%C(yellow)%h\\ %ad%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate --date=short --graph
 	#############
 	aliases = !git config -l | grep alias | cut -c 7-
 	snap = !git stash save 'snapshot: $(date)' && git stash apply 'stash@{0}'
 	behind = !git rev-list --left-only --count $(git bu)...HEAD
 	ahead = !git rev-list --right-only --count $(git bu)...HEAD
+

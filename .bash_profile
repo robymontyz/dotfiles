@@ -2,6 +2,9 @@ if [[ -f ~/.bashrc ]]; then
 	source ~/.bashrc
 fi
 
+# P A T H
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+
 # bash-completion support
 if [[ "${OSTYPE}" == "darwin"* ]]; then
 	# if under macOS, use homebrew's bash-completion location
@@ -14,3 +17,4 @@ elif [[ "${OSTYPE}" == "linux"* ]]; then
 		source /etc/bash_completion
 	fi
 fi
+

@@ -65,9 +65,35 @@ if [[ $? -eq 0 ]]; then
 			echo "No formulae previously installed (or exported)"
 			echo "Launch 'brew leaves > ${BACKUPDIR}/.install/brew' to export"
 		fi
+		# install all casks
+		if [[ -f ${BACKUPDIR}/.install/brew-casks ]]; then
+			echo "Installing brew casks..."
+			brew cask install $(< ${BACKUPDIR}/.install/brew-casks)
+		else
+			echo "No casks previously installed (or exported)"
+			echo "Launch 'brew casks list > ${BACKUPDIR}/.install/brew-casks' to export"
+		fi
 		# homebrew settings
 		brew analytics off    # opt-out from analytics
 
+		# ======== MAS ======== #
+		# install Mac App Store applications
+		# check if mas utility is installed
+		mas version > /dev/null
+		if [[ $? -ne 0 ]]; then
+			# install mas
+			echo "Installing mas from Homebrew..."
+			brew install mas
+		fi
+		# install all applications
+		if [[ -f ${BACKUPDIR}/.install/mas ]]; then
+			echo "Installing MAS applications..."
+			mas install $(cat ${BACKUPDIR}/.install/mas | cut -d " " -f1)
+		else
+			echo "No MAS applications previously installed (or exported)"
+			echo "Launch 'mas list > ${BACKUPDIR}/.install/mas' to export"
+		fi
+		
 		# ======== Plugins ======== #
 		# QuickLook plugins (macOS only)
 		rsync -a ${BACKUPDIR}/.plugins/QL/ ~/Library/QuickLook/
@@ -78,9 +104,10 @@ if [[ $? -eq 0 ]]; then
 		# personal launchd agents (macOS/launchd users only)
 		# TODO: comment these lines if you don't want this feature
 		# no need to create dir tree, already present on default
-		rsync -a ${BACKUPDIR}/LaunchAgents/com.scripts.ExportBashSettings.plist ~/Library/LaunchAgents/
-		rsync -a ${BACKUPDIR}/LaunchAgents/com.scripts.HomebrewUpdate.plist ~/Library/LaunchAgents/
-		rsync -a ${BACKUPDIR}/LaunchAgents/com.scripts.MagpiDownload.plist ~/Library/LaunchAgents/
+		rsync -a ${BACKUPDIR}/LaunchAgents/com.scripts* ~/Library/LaunchAgents/
+		#rsync -a ${BACKUPDIR}/LaunchAgents/com.scripts.ExportBashSettings.plist ~/Library/LaunchAgents/
+		#rsync -a ${BACKUPDIR}/LaunchAgents/com.scripts.HomebrewUpdate.plist ~/Library/LaunchAgents/
+		#rsync -a ${BACKUPDIR}/LaunchAgents/com.scripts.MagpiDownload.plist ~/Library/LaunchAgents/
 
 		# ======== Themes ======== #
 		# Install 'Solarized Dark' color schemes
@@ -121,9 +148,11 @@ if [[ $? -eq 0 ]]; then
 
 	# gpg settings
 	rsync -a ${BACKUPDIR}/.gnupg/pubring.kbx ~/.gnupg/
-	# possibly recreate trustdb if corrupted
-	#mv ~/.gnupg/trustdb.gpg ~/.gnupg/trustdb.OLD
-	#gpg --import-ownertrust < ${BACKUPDIR}/.gnupg/ownertrust.txt
+	rsync -a ${BACKUPDIR}/.gnupg/openpgp-revocs.d/ ~/.gnupg/openpgp-revocs.d/
+	rsync -a ${BACKUPDIR}/.gnupg/private-keys-v1.d/ ~/.gnupg/private-keys-v1.d/
+	mv ~/.gnupg/trustdb.gpg ~/.gnupg/trustdb.OLD
+	gpg --import-ownertrust < ${BACKUPDIR}/.gnupg/ownertrust.txt
+	
 
 	# ssh/sshd settings and keys
 	rsync -a ${BACKUPDIR}/.ssh/ ~/.ssh/
@@ -145,3 +174,4 @@ else
 	echo "Backup folder cannot be created. Aborting..."
 	exit 1
 fi
+

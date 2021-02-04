@@ -4,11 +4,13 @@
 set nocompatible                " be iMproved (default)
 filetype plugin indent on       " allow intelligent auto-indenting and plugins for each filetype
 syntax on                       " enable syntax highlighting
+set omnifunc=syntaxcomplete#Complete    " enable auto-completion
 set term=xterm-256color
 set number                      " display line numbers on the left
 set showcmd                     " show partial commands in the last line of the screen
 set showmatch                   " show matching braces
 "set noshowmode                 " do not show mode in the last line
+set clipboard=unnamedplus       " Use system clipboard for copy/paste
 set hlsearch                    " highlight searches
 set mouse=a                     " enable mouse in all modes
 set wildmenu                    " make command mode (:) completion bash-like
@@ -103,3 +105,4 @@ autocmd BufNewFile,BufRead *.txt setlocal spell spelllang=en,it
 " Underlining current line based on mode
 autocmd InsertLeave * set nocursorline
 autocmd InsertEnter * set cursorline
+

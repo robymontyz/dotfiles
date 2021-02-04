@@ -30,6 +30,10 @@ export GPG_TTY=$(tty)
 # change default location for personal mailbox for 'mail' command
 export MBOX='~/.mbox'
 
+export LANG=en_US.UTF-8
+
+# ======== PATH/ENV ========
+
 # shell options ("shopt -p" for a complete list)
 shopt -s cdspell      # correct dir spelling errors on cd
 shopt -s cmdhist      # save multi-line commands as one command
@@ -61,6 +65,7 @@ alias la='ls -lahG'
 alias grep='grep --color=auto'
 # search for all git projects in user home folder and show their statuses
 alias ggits='find -L ~ -type d -name .git -print -exec bash -c '\''cd -L $0 && cd .. && git status -s && echo'\'' {} \; -prune'
+alias ytdl="cd ~/Downloads/ && youtube-dl -f bestaudio[ext=m4a] -o '%(title)s.%(ext)s' --embed-thumbnail --add-metadata"
 
 # ======== Functions ========
 # moves file to ~/.Trash (use instead of rm)
@@ -82,6 +87,16 @@ trash(){
 			echo "${FILE} trashed!"
 		fi
 	done
+}
+
+# Wake-On-LAN a PC with a specified MAC address
+wol() {
+	if [[ $# -ne 1 ]]; then
+		echo "Usage: wol <MAC-address>"
+		return 1
+	else
+		echo -e $(echo $(printf 'f%.0s' {1..12}; printf "$(echo "$@"| sed 's/://g')%.0s" {1..16}) | sed -e 's/../\\x&/g') | socat - UDP-DATAGRAM:255.255.255.255:9,broadcast
+	fi
 }
 
 # Make a directory and change to it (mkdir + cd)
@@ -133,6 +148,15 @@ chksum(){
 		|| echo "WARNING: sha1 NOT identical!"
 }
 
+# Check if a password has been disclosed on a 27GB archive
+chkpsw(){
+	PSW_LOCATION='/Volumes/MacOS-HDD_500GB/Data/Downloads/Transmission/'
+	if [[ $# -ne 1 ]]; then
+		echo "Usage: chkpsw <password_to_check>"
+		return 1
+	fi
+	printf "$1" | shasum | tr '[:lower:]' '[:upper:]' | sed 's/\-//g' | xargs -I {} look {} "$PSW_LOCATION/pwned-passwords-sha1-ordered-by-hash-v7.txt"
+}
 
 # ======== Prompts ========
 # color codes
@@ -202,3 +226,4 @@ PS1='[\[${BOLD}\]\t\[${NONE}\]] \
 PS2='\[${USER_COLOR}\]>\[${NONE}\] '
 
 PS4='$0:${LINENO}\[${USER_COLOR}\]+\[${NONE}\] '
+

@@ -52,7 +52,7 @@ if [[ "${_OS_NAME}" ==  "Darwin" ]]; then
 	echo "macOS installed. Exporting specific setting..."
 
 	# ======== Homebrew ======== #
-	# homebrew formulae installed
+	# homebrew formulae and casks installed
 	# check if homebrew is installed
 	brew help > /dev/null
 	if [[ $? -ne 0 ]]; then
@@ -61,14 +61,30 @@ if [[ "${_OS_NAME}" ==  "Darwin" ]]; then
 	else
 		mkdir -p ~/.install/ && brew leaves > ~/.install/brew
 		mkdir -p ${BACKUPDIR}/.install/ && brew leaves > ${BACKUPDIR}/.install/brew
+		brew cask list > ~/.install/brew-casks
+		brew cask list > ${BACKUPDIR}/.install/brew-casks
+	fi
+	
+	# ======== MAS ======== #
+	# Mac App Store applications installed
+	# check if mas utility is installed
+	mas version > /dev/null
+	if [[ $? -ne 0 ]]; then
+		# install mas!
+		echo "mas not installed" >&2
+		echo "Install Homebrew and then run: $>brew install mas" >&2
+	else
+		mkdir -p ~/.install/ && mas list > ~/.install/mas
+		mkdir -p ${BACKUPDIR}/.install/ && mas list > ${BACKUPDIR}/.install/mas
 	fi
 
 	# ======== launchd ======== #
 	# personal launchd agents (macOS/launchd users only)
 	# TODO: comment these lines if you don't want this feature
-	rsync -a ~/Library/LaunchAgents/com.scripts.ExportBashSettings.plist ${BACKUPDIR}/LaunchAgents/
-	rsync -a ~/Library/LaunchAgents/com.scripts.HomebrewUpdate.plist ${BACKUPDIR}/LaunchAgents/
-	rsync -a ~/Library/LaunchAgents/com.scripts.MagpiDownload.plist ${BACKUPDIR}/LaunchAgents/
+	rsync -a ~/Library/LaunchAgents/com.scripts.* ${BACKUPDIR}/LaunchAgents/
+	#rsync -a ~/Library/LaunchAgents/com.scripts.ExportBashSettings.plist ${BACKUPDIR}/LaunchAgents/
+	#rsync -a ~/Library/LaunchAgents/com.scripts.HomebrewUpdate.plist ${BACKUPDIR}/LaunchAgents/
+	#rsync -a ~/Library/LaunchAgents/com.scripts.MagpiDownload.plist ${BACKUPDIR}/LaunchAgents/
 
 	# ======== Themes ======== #
 	# themes for various macOS apps
@@ -88,6 +104,8 @@ rsync -a ~/.screenrc ${BACKUPDIR}/.screenrc
 
 # gpg settings
 rsync -a ~/.gnupg/pubring.kbx ${BACKUPDIR}/.gnupg/
+rsync -a ~/.gnupg/openpgp-revocs.d/ ${BACKUPDIR}/.gnupg/openpgp-revocs.d/
+rsync -a ~/.gnupg/private-keys-v1.d/ ${BACKUPDIR}/.gnupg/private-keys-v1.d/
 gpg --export-ownertrust > ${BACKUPDIR}/.gnupg/ownertrust.txt
 
 # ssh/sshd settings and keys
@@ -102,3 +120,4 @@ rsync -a ~/.scripts/ ${BACKUPDIR}/.scripts/
 #crontab -l > ${BACKUPDIR}/crontab_file
 
 echo "Bash settings correctly saved in ${BACKUPDIR}"
+

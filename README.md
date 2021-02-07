@@ -1,6 +1,6 @@
 # robymontyz's dotfiles
 
-![Screenshot of my shell prompt and workflow using GNU Screen](.assets/workflow.png)
+![Screenshot of my shell prompt and workflow using GNU Screen](assets/workflow.png)
 
 ## Dependencies
 

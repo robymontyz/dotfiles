@@ -30,6 +30,9 @@ export GPG_TTY=$(tty)
 # change default location for personal mailbox for 'mail' command
 export MBOX='~/.mbox'
 
+# opt out of Homebrew's analytics
+export HOMEBREW_NO_ANALYTICS=1
+
 export LANG=en_US.UTF-8
 
 # ======== PATH/ENV ========
@@ -221,7 +224,7 @@ PS1='[\[${BOLD}\]\t\[${NONE}\]] \
 \[${BORANGE}\]\[${mydir}\] \
 \[${NONE}\][\[${BOLD}\]!\!\[${NONE}\]|\
 \[${exit_status}\]]\n\
-\[${USER_COLOR}\]\$\[${NONE}\] '
+╰─\[${USER_COLOR}\]\$\[${NONE}\] '
 
 PS2='\[${USER_COLOR}\]>\[${NONE}\] '
 

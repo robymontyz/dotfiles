@@ -20,16 +20,13 @@
 ## Usage: export_bash_settings.sh [backupdir]
 
 # TODO: choose your default BACKUDIR here
-BACKUPDIR=""
+BACKUPDIR="$HOME/dev/dotfiles"
 _OS_NAME="$(uname -s)"
 
 if [[ $# -eq 0 ]] && [[ -d ${BACKUPDIR} ]]; then
 	echo "Using default backup dir: ${BACKUPDIR}"; echo
 elif [[ $# -eq 1 ]] && [[ -d $1 ]]; then
 	BACKUPDIR=$1
-elif ! [[ -d ${BACKUPDIR} ]] || ! [[ -d $1 ]]; then
-	echo "Invalid directory" >&2
-	exit 1
 else
 	echo "Usage: $0 [backupdir]" >&2
 	exit 1

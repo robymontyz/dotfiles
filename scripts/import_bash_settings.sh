@@ -20,17 +20,14 @@
 ## Usage: import_bash_settings.sh [backupdir]
 
 # TODO: choose your default BACKUPDIR here
-BACKUPDIR="/Volumes/MacOS-HDD_500GB/Installed/bash_mods"
+BACKUPDIR="$HOME/dev/dotfiles"
 _OS_NAME="$(uname -s)"
 
 # check arguments
-if [[ $# -eq 0 ]] && [[ -d $BACKUPDIR ]]; then
+if [[ $# -eq 0 ]] && [[ -d ${BACKUPDIR} ]]; then
 	echo "Using default backup dir: ${BACKUPDIR}"; echo
 elif [[ $# -eq 1 ]] && [[ -d $1 ]]; then
 	BACKUPDIR=$1
-elif ! [[ -d ${BACKUPDIR} ]] || ! [[ -d $1 ]]; then
-	echo "$0: Invalid directory" >&2
-	exit 1
 else
 	echo "Usage: $0 [backupdir]" >&2
 	exit 1

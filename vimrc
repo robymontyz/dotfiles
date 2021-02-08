@@ -10,7 +10,7 @@ set number                      " display line numbers on the left
 set showcmd                     " show partial commands in the last line of the screen
 set showmatch                   " show matching braces
 "set noshowmode                 " do not show mode in the last line
-set clipboard=unnamedplus       " Use system clipboard for copy/paste
+set clipboard^=unnamed,unnamedplus  " use system clipbaord for copy/paste
 set hlsearch                    " highlight searches
 set mouse=a                     " enable mouse in all modes
 set wildmenu                    " make command mode (:) completion bash-like

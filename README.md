@@ -120,6 +120,14 @@ You can clone/download the repository wherever you want. The script will copy th
 
 	* [QLmarkdown](https://github.com/toland/qlmarkdow)
 
+	* [BetterZipQL](https://macitbetter.com/downloads)
+
+	* [QLColorCode](https://github.com/n8gray/QLColorCode)
+
+	* [qlImageSize](https://github.com/Nyx0uf/qlImageSize)
+
+	* [QLStephen](https://github.com/whomwah/qlstephen)
+
 ## Feedback
 
 Suggestions and improvements are [welcome](https://github.com/robymontyz/dotfiles/issues).
@@ -134,7 +142,6 @@ Follow me on Twitter: [![twitter](https://img.shields.io/twitter/follow/espadrin
 * [sharfah](https://github.com/sharfah/dotfiles) and his fantastic [blog posts](http://fahdshariff.blogspot.it/2011/03/my-bash-profile-part-i.html)
 * [mathiasbynens](https://github.com/mathiasbynens/dotfiles) for this README
 * [paulirish](https://github.com/paulirish/dotfiles)
-* [Phil Toland - toland](https://github.com/toland/qlmarkdown) for the Markdown plugin for Apple's QuickLook
 * [Michael Geddes](https://www.vim.org/scripts/script.php?script_id=231) for Smart Tabs plugin for ViM
 * [Ethan Schoonover - altercation](https://github.com/altercation/vim-colors-solarized) for creating *Solarized Dark* and its ViM version
 * [mbadolato](https://github.com/mbadolato/iTerm2-Color-Schemes) for *Solarized Dark* Terminal.app theme

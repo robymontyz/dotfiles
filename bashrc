@@ -153,12 +153,12 @@ chksum(){
 
 # Check if a password has been disclosed on a 27GB archive
 chkpsw(){
-	PSW_LOCATION='/Volumes/MacOS-HDD_500GB/Data/Downloads/Transmission/'
+	file=""
 	if [[ $# -ne 1 ]]; then
 		echo "Usage: chkpsw <password_to_check>"
 		return 1
 	fi
-	printf "$1" | shasum | tr '[:lower:]' '[:upper:]' | sed 's/\-//g' | xargs -I {} look {} "$PSW_LOCATION/pwned-passwords-sha1-ordered-by-hash-v7.txt"
+	printf "$1" | shasum | tr '[:lower:]' '[:upper:]' | sed 's/\-//g' | xargs -I {} look {} "$file"
 }
 
 # ======== Prompts ========

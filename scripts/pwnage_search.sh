@@ -28,7 +28,7 @@ fi
 # Variables
 line=551509767
 psw_to_check=$(echo -n "$1" | shasum -a 1 | awk '{print $1}')
-file="/Volumes/MacOS-HDD_500GB/Data/Downloads/Transmission/pwned-passwords-sha1-ordered-by-hash-v4.txt"
+file=""
 
 # password hash
 hash=$(echo -n "${psw}" | shasum -a 1 | awk '{print $1}')"

@@ -50,11 +50,23 @@ You can clone/download the repository wherever you want. The script will copy th
 
 		- [Smart Tabs](https://www.vim.org/scripts/script.php?script_id=231)
 
-* ### Homebrew
+* ### Homebrew (macOS only)
 
 	* install [Homebrew](https://brew.sh), if not installed yet
 
-	* install all the formulae specified in `.install/brew`
+	* install all the formulae specified in `install/brew`
+
+	* install all the casks specified in `install/brew-cask`
+
+* ### mas (macOS only)
+
+	* install [mas](https://github.com/mas-cli/mas), if not installed yet
+
+	* install all the apps specified in `install/mas`
+
+* ### mas (macOS only)
+
+	* install all the [pip](https://pypi.org) modules specified in `install/pip`
 
 * ### Git
 
@@ -81,6 +93,12 @@ You can clone/download the repository wherever you want. The script will copy th
 * ### GnuGP
 
 	* `pubring.kbx`
+
+	* `openpgp-revocs.d`
+
+	* `private-keys-v1.d`
+
+	* `ownertrust`
 
 	**N.B.** *My PGP keyring, obviously, is not actually included in this repo but you can add it by yourself inside `.gpg/` folder.*
 

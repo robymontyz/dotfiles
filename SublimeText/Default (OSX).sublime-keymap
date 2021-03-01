@@ -1,0 +1,3 @@
+[
+	{ "keys": ["alt+m"], "command": "open_markdown_preview" }
+]

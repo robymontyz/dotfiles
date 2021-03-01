@@ -71,6 +71,7 @@ if [[ $? -eq 0 ]]; then
 	echo "screen settings imported."; echo
 
 	# ssh/sshd settings and keys
+	# TODO: comment these lines if you don't have ssh preference to import
 	rsync -a ${BACKUPDIR}/ssh/ ~/.ssh/
 	echo "(Insert admin password to import sshd_config file if requested)"
 	sudo rsync -a ${BACKUPDIR}/sshd/sshd_config /etc/ssh/sshd_config
@@ -197,15 +198,15 @@ if [[ $? -eq 0 ]]; then
 	fi
 
 	# Sublime Text preferences
-	mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/ && rsync -a ${BACKUPDIR}/SublimeText/ $_
+	mkdir -p "~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/" && rsync -a ${BACKUPDIR}/SublimeText/ $_
 	echo "Sublime Text preferences imported."; echo
-
 
 	# pip modules
 	pip3 install -r ${BACKUPDIR}/install/pip
 	echo "pip modules installed."; echo
 
 	# gpg settings
+	# TODO: comment these lines if you don't have GnuPG settings to import
 	rsync -a ${BACKUPDIR}/gnupg/pubring.kbx ~/.gnupg/
 	rsync -a ${BACKUPDIR}/gnupg/openpgp-revocs.d/ ~/.gnupg/openpgp-revocs.d/
 	rsync -a ${BACKUPDIR}/gnupg/private-keys-v1.d/ ~/.gnupg/private-keys-v1.d/

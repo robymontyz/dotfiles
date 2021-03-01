@@ -131,7 +131,7 @@ if [[ "${_OS_NAME}" ==  "Darwin" ]]; then
 fi
 
 # Sublime Text preferences
-if [[ -d ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User ]]; then rsync -a ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/ ${BACKUPDIR}/SublimeText/; fi
+if [[ -d "~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User" ]]; then rsync -a "~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/" ${BACKUPDIR}/SublimeText/; fi
 echo "Sublime Text preferences exported if exist."; echo
 
 # pip modules
@@ -142,7 +142,7 @@ echo "List of installed Python Packages (PyP) exported if exist."; echo
 if [[ -f ~/.gnupg/pubring.kbx ]]; then rsync -a ~/.gnupg/pubring.kbx ${BACKUPDIR}/gnupg/; fi
 if [[ -d ~/.gnupg/openpgp-revocs.d ]]; then rsync -a ~/.gnupg/openpgp-revocs.d/ ${BACKUPDIR}/gnupg/openpgp-revocs.d/; fi
 if [[ -d ~/.gnupg/private-keys-v1.d ]]; then rsync -a ~/.gnupg/private-keys-v1.d/ ${BACKUPDIR}/gnupg/private-keys-v1.d/; fi
-command -v gpg > /dev/null && gpg --export-ownertrust > ${BACKUPDIR}/gnupg/ownertrust.txt
+command -v gpg > /dev/null && mkdir -p "${BACKUPDIR}/gnupg/" && gpg --export-ownertrust > ${BACKUPDIR}/gnupg/ownertrust.txt
 echo "gpg keys and settings exported if exist."; echo
 
 echo "Bash settings correctly saved in ${BACKUPDIR}"

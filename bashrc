@@ -161,6 +161,17 @@ chkpsw(){
 	printf "$1" | shasum | tr '[:lower:]' '[:upper:]' | sed 's/\-//g' | xargs -I {} look {} "$file"
 }
 
+# Open man page in Preview as pdf
+manpdf(){
+	man -t "$@" | open -f -a "Preview"
+	rm /private/tmp/open_*
+}
+
+# Open x-man pages
+xman(){
+	open x-man-page://"$@"
+}
+
 # ======== Prompts ========
 # color codes
 BOLD=$'\e[1m'
@@ -193,9 +204,11 @@ _get_path(){
 _get_exit_status(){
 	local es=$?
 	if [[ $es -eq 0 ]]; then
-		exit_status="${GREEN}${es}${NONE}"
+		#exit_status="${GREEN}${es}${NONE}"
+		exit_status="${BGREEN}"
 	else
-		exit_status="${RED}${es}${NONE}"
+		#exit_status="${RED}${es}${NONE}"
+		exit_status="${BRED}"
 	fi
 }
 
@@ -219,14 +232,18 @@ fi
 PROMPT_COMMAND="_get_exit_status;_get_path;history -a${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
 #history -c;history -r"
 
+#PS1='[\[${BOLD}\]\t\[${NONE}\]] \
+#\[${USER_COLOR}\]\u\[${NONE}\]@\[${HOST_COLOR}\]\h:\
+#\[${BORANGE}\]\[${mydir}\] \
+#\[${NONE}\][\[${BOLD}\]!\!\[${NONE}\]|\
+#\[${exit_status}\]]\n\
+#╰─\[${USER_COLOR}\]\$\[${NONE}\] '
+
 PS1='[\[${BOLD}\]\t\[${NONE}\]] \
-\[${USER_COLOR}\]\u\[${NONE}\]@\[${HOST_COLOR}\]\h:\
-\[${BORANGE}\]\[${mydir}\] \
-\[${NONE}\][\[${BOLD}\]!\!\[${NONE}\]|\
-\[${exit_status}\]]\n\
-╰─\[${USER_COLOR}\]\$\[${NONE}\] '
+\[${USER_COLOR}\]\u\[${NONE}\]:\
+\[${BORANGE}\]\[${mydir}\]\[${NONE}\]\n\
+\[${exit_status}\]›\[${NONE}\] '
 
 PS2='\[${USER_COLOR}\]>\[${NONE}\] '
 
 PS4='$0:${LINENO}\[${USER_COLOR}\]+\[${NONE}\] '
-

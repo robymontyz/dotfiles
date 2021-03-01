@@ -40,6 +40,11 @@ if [[ -f ~/.bashrc ]]; then rsync -a ~/.bashrc ${BACKUPDIR}/bashrc; fi
 if [[ -f ~/.inputrc ]]; then rsync -a ~/.inputrc ${BACKUPDIR}/inputrc; fi
 echo "bash settings exported if exist."; echo
 
+# zsh settings
+if [[ -f ~/.zprofile ]]; then rsync -a ~/.zprofile ${BACKUPDIR}/zprofile; fi
+if [[ -f ~/.zshrc ]]; then rsync -a ~/.zshrc ${BACKUPDIR}/zshrc; fi
+echo "zsh settings exported if exist."; echo
+
 # ViM settings
 if [[ -f ~/.vimrc ]]; then rsync -a ~/.vimrc ${BACKUPDIR}/vimrc; fi
 # NB: If the source_file ends in a /, the contents of the directory are copied rather than the directory itself
@@ -124,6 +129,10 @@ if [[ "${_OS_NAME}" ==  "Darwin" ]]; then
 	echo "End of macOS part."
 	echo "-----------------------------------------"; echo
 fi
+
+# Sublime Text preferences
+if [[ -d ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User ]]; then rsync -a ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/ ${BACKUPDIR}/SublimeText/; fi
+echo "Sublime Text preferences exported if exist."; echo
 
 # pip modules
 command -v pip3 > /dev/null && mkdir -p ${BACKUPDIR}/install && pip3 list | cut -d " " -f 1 | tail -n +3 > ${BACKUPDIR}/install/pip

@@ -48,32 +48,37 @@ if [[ $? -eq 0 ]]; then
 	rsync -a ${BACKUPDIR}/bash_profile ~/.bash_profile
 	rsync -a ${BACKUPDIR}/bashrc ~/.bashrc
 	rsync -a ${BACKUPDIR}/inputrc ~/.inputrc
-	echo "bash settings exported if exist."; echo
+	echo "bash settings imported."; echo
 
-# ViM settings
+	# zsh settings
+	rsync -a ${BACKUPDIR}/zprofile ~/.zprofile
+	rsync -a ${BACKUPDIR}/zshrc ~/.zshrc
+	echo "zsh settings imported."; echo
+
+	# ViM settings
 	rsync -a ${BACKUPDIR}/vimrc ~/.vimrc
 	# NB: if the source ends in a /, the contents of the directory are copied rather than the directory itself
 	rsync -a ${BACKUPDIR}/vim/ ~/.vim/
-	echo "ViM settings exported if exist."; echo
+	echo "ViM settings imported."; echo
 
 	# git settings
 	rsync -a ${BACKUPDIR}/gitconfig ~/.gitconfig
 	mkdir -p ~/.config/git/ && rsync -a ${BACKUPDIR}/config/git/ignore $_
-	echo "git settings exported if exist."; echo
+	echo "git settings imported."; echo
 
 	# screen settings
 	rsync -a ${BACKUPDIR}/screenrc ~/.screenrc
-	echo "screen settings exported if exist."; echo
+	echo "screen settings imported."; echo
 
 	# ssh/sshd settings and keys
 	rsync -a ${BACKUPDIR}/ssh/ ~/.ssh/
 	echo "(Insert admin password to import sshd_config file if requested)"
 	sudo rsync -a ${BACKUPDIR}/sshd/sshd_config /etc/ssh/sshd_config
-	echo "SSH settings exported if exist."; echo
+	echo "SSH settings imported."; echo
 
 	# personal scripts
 	rsync -a ${BACKUPDIR}/scripts/ ~/.scripts/
-	echo "Personal scripts exported if exist."; echo
+	echo "Personal scripts imported."; echo
 
 	# crontab file
 	# TODO: comment these lines if you are using launchd
@@ -126,6 +131,8 @@ if [[ $? -eq 0 ]]; then
 		# install all casks
 		if [[ -f ${BACKUPDIR}/install/brew-casks ]]; then
 			echo "Installing brew casks..."
+			brew tap homebrew/cask-fonts
+			brew tap homebrew/cask-drivers
 			brew install --casks $(< ${BACKUPDIR}/install/brew-casks)
 			echo "Brew casks installed."; echo
 		else
@@ -189,6 +196,11 @@ if [[ $? -eq 0 ]]; then
 		echo "-----------------------------------------"; echo
 	fi
 
+	# Sublime Text preferences
+	mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/ && rsync -a ${BACKUPDIR}/SublimeText/ $_
+	echo "Sublime Text preferences imported."; echo
+
+
 	# pip modules
 	pip3 install -r ${BACKUPDIR}/install/pip
 	echo "pip modules installed."; echo
@@ -199,7 +211,7 @@ if [[ $? -eq 0 ]]; then
 	rsync -a ${BACKUPDIR}/gnupg/private-keys-v1.d/ ~/.gnupg/private-keys-v1.d/
 	# check if trustdb already exist
 	if [[ -f ~/gnupg/trustdb.gpg ]]; then mv ~/.gnupg/trustdb.gpg ~/.gnupg/trustdb.OLD; fi
-# fix gnupg folder permissions
+	# fix gnupg folder permissions
 	chmod 700 ~/.gnupg
 	chmod 600 ~/.gnupg/pubring.kbx
 	gpg --import-ownertrust < ${BACKUPDIR}/gnupg/ownertrust.txt

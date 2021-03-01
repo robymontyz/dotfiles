@@ -46,6 +46,9 @@ bindkey $'^[[B' down-line-or-search  # down arrow
 # change default location for personal mailbox for 'mail' command
 export MBOX='~/.mbox'
 
+# For gpg-agent
+export GPG_TTY=$(tty)
+
 # opt out of Homebrew's analytics
 export HOMEBREW_NO_ANALYTICS=1
 

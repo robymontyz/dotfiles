@@ -198,11 +198,12 @@ if [[ $? -eq 0 ]]; then
 	fi
 
 	# Sublime Text preferences
-	mkdir -p "~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/" && rsync -a ${BACKUPDIR}/SublimeText/ $_
+	mkdir -p "~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/" && rsync -a ${BACKUPDIR}/SublimeText/ "$_"
 	echo "Sublime Text preferences imported."; echo
 
 	# pip modules
-	pip3 install -r ${BACKUPDIR}/install/pip
+	# TODO: comment this line if you don't have pip packages to install
+	if [[ -f "${BACKUPDIR}/install/pip" ]]; then pip3 install -r ${BACKUPDIR}/install/pip; fi
 	echo "pip modules installed."; echo
 
 	# gpg settings

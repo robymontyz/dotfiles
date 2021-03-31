@@ -23,10 +23,10 @@
 BACKUPDIR="$HOME/dev/dotfiles"
 _OS_NAME="$(uname -s)"
 
-if [[ $# -eq 0 ]] && [[ -d ${BACKUPDIR} ]]; then
+if [[ $# -eq 0 ]] && [[ "${BACKUPDIR}" ]]; then
 	echo "Using default backup dir: ${BACKUPDIR}"; echo
-elif [[ $# -eq 1 ]] && [[ -d $1 ]]; then
-	BACKUPDIR=$1
+elif [[ $# -eq 1 ]] && [[ -d "$1" ]]; then
+	BACKUPDIR="$1"
 else
 	echo "Usage: $0 [backupdir]" >&2
 	exit 1
@@ -35,44 +35,44 @@ fi
 echo "Exporting..."; echo
 
 # bash settings
-if [[ -f ~/.bash_profile ]]; then rsync -a ~/.bash_profile ${BACKUPDIR}/bash_profile; fi
-if [[ -f ~/.bashrc ]]; then rsync -a ~/.bashrc ${BACKUPDIR}/bashrc; fi
-if [[ -f ~/.inputrc ]]; then rsync -a ~/.inputrc ${BACKUPDIR}/inputrc; fi
+if [[ -f ~/.bash_profile ]]; then rsync -a ~/.bash_profile "${BACKUPDIR}"/bash_profile; fi
+if [[ -f ~/.bashrc ]]; then rsync -a ~/.bashrc "${BACKUPDIR}"/bashrc; fi
+if [[ -f ~/.inputrc ]]; then rsync -a ~/.inputrc "${BACKUPDIR}"/inputrc; fi
 echo "bash settings exported if exist."; echo
 
 # zsh settings
-if [[ -f ~/.zprofile ]]; then rsync -a ~/.zprofile ${BACKUPDIR}/zprofile; fi
-if [[ -f ~/.zshrc ]]; then rsync -a ~/.zshrc ${BACKUPDIR}/zshrc; fi
+if [[ -f ~/.zprofile ]]; then rsync -a ~/.zprofile ""${BACKUPDIR}""/zprofile; fi
+if [[ -f ~/.zshrc ]]; then rsync -a ~/.zshrc "${BACKUPDIR}"/zshrc; fi
 echo "zsh settings exported if exist."; echo
 
 # ViM settings
-if [[ -f ~/.vimrc ]]; then rsync -a ~/.vimrc ${BACKUPDIR}/vimrc; fi
+if [[ -f ~/.vimrc ]]; then rsync -a ~/.vimrc "${BACKUPDIR}"/vimrc; fi
 # NB: If the source_file ends in a /, the contents of the directory are copied rather than the directory itself
 # NB2: create dir tree first! $_ is the last argument of previous command
-if [[ -d ~/.vim ]]; then rsync -a ~/.vim/ ${BACKUPDIR}/vim/; fi
+if [[ -d ~/.vim ]]; then rsync -a ~/.vim/ "${BACKUPDIR}"/vim/; fi
 echo "ViM settings exported if exist."; echo
 
 # git settings
-if [[ -f ~/.gitconfig ]]; then rsync -a ~/.gitconfig ${BACKUPDIR}/gitconfig; fi
-if [[ -f ~/.config/git/ignore ]]; then mkdir -p ${BACKUPDIR}/config/git/ && rsync -a ~/.config/git/ignore $_; fi
+if [[ -f ~/.gitconfig ]]; then rsync -a ~/.gitconfig "${BACKUPDIR}"/gitconfig; fi
+if [[ -f ~/.config/git/ignore ]]; then mkdir -p "${BACKUPDIR}"/config/git/ && rsync -a ~/.config/git/ignore $_; fi
 echo "git settings exported if exist."; echo
 
 # screen settings
-if [[ -f ~/.screenrc ]]; then rsync -a ~/.screenrc ${BACKUPDIR}/screenrc; fi
+if [[ -f ~/.screenrc ]]; then rsync -a ~/.screenrc "${BACKUPDIR}"/screenrc; fi
 echo "screen settings exported if exist."; echo
 
 # ssh/sshd settings and keys
-if [[ -d ~/.ssh ]]; then rsync -a ~/.ssh/ ${BACKUPDIR}/ssh/; fi
-if [[ -f /etc/ssh/sshd_config ]]; then rsync -a /etc/ssh/sshd_config ${BACKUPDIR}/sshd/; fi
+if [[ -d ~/.ssh ]]; then rsync -a ~/.ssh/ "${BACKUPDIR}"/ssh/; fi
+if [[ -f /etc/ssh/sshd_config ]]; then rsync -a /etc/ssh/sshd_config "${BACKUPDIR}"/sshd/; fi
 echo "SSH settings exported if exist."; echo
 
 # personal scripts
-if [[ -d ~/.scripts ]]; then rsync -a ~/.scripts/ ${BACKUPDIR}/scripts/; fi
+if [[ -d ~/.scripts ]]; then rsync -a ~/.scripts/ "${BACKUPDIR}"/scripts/; fi
 echo "Personal scripts exported if exist."; echo
 
 # Crontab file
 # TODO: comment these lines if you are using launchd
-#crontab -l > ${BACKUPDIR}/crontab_file
+#crontab -l > "${BACKUPDIR}"/crontab_file
 #echo "crontab exported."; echo
 
 # export specific setting on macOS
@@ -90,9 +90,9 @@ if [[ "${_OS_NAME}" ==  "Darwin" ]]; then
 		echo "Homebrew not installed. Skipped."; echo >&2
 	else
 		#mkdir -p ~/.install/ && brew leaves > ~/.install/brew
-		mkdir -p ${BACKUPDIR}/install/ && brew leaves > ${BACKUPDIR}/install/brew
+		mkdir -p "${BACKUPDIR}"/install/ && brew leaves > "${BACKUPDIR}"/install/brew
 		#brew list --casks > ~/.install/brew-casks
-		brew list --casks > ${BACKUPDIR}/install/brew-casks
+		brew list --casks > "${BACKUPDIR}"/install/brew-casks
 		echo "List of installed Homebrew packages and casks exported."; echo
 	fi
 	
@@ -106,24 +106,24 @@ if [[ "${_OS_NAME}" ==  "Darwin" ]]; then
 		echo "Install Homebrew and then run: $ > brew install mas"; echo >&2
 	else
 		#mkdir -p ~/.install/ && mas list > ~/.install/mas
-		mkdir -p ${BACKUPDIR}/install/ && mas list > ${BACKUPDIR}/install/mas
+		mkdir -p "${BACKUPDIR}"/install/ && mas list > "${BACKUPDIR}"/install/mas
 		echo "List of installed Mac App Store apps exported."; echo
 	fi
 
 	# ======== Plugins ======== #
 	# Personal QuickLook plugins (macOS only)
-	mkdir -p ${BACKUPDIR}/plugins/QL/ && rsync -a ~/Library/QuickLook/ $_
+	mkdir -p "${BACKUPDIR}"/plugins/QL/ && rsync -a ~/Library/QuickLook/ $_
 	echo "macOS plugins exported if exist."; echo
 
 	# ======== launchd ======== #
 	# personal launchd agents (macOS/launchd users only)
 	# TODO: comment these lines if you don't want this feature
-	ls ~/Library/LaunchAgents/com.scripts.* 1>/dev/null 2>&1 && rsync -a ~/Library/LaunchAgents/com.scripts.* ${BACKUPDIR}/LaunchAgents/
+	ls ~/Library/LaunchAgents/com.scripts.* 1>/dev/null 2>&1 && rsync -a ~/Library/LaunchAgents/com.scripts.* "${BACKUPDIR}"/LaunchAgents/
 	echo "LaunchAgents exported if exist."; echo
 	
 	# ======== Themes ======== #
 	# themes for various macOS apps
-	if [[ -d ~/.themes ]]; then rsync -a ~/.themes/ ${BACKUPDIR}/themes/; fi
+	if [[ -d ~/.themes ]]; then rsync -a ~/.themes/ "${BACKUPDIR}"/themes/; fi
 	echo "Themes exported if exist."; echo
 	
 	echo "End of macOS part."
@@ -131,18 +131,18 @@ if [[ "${_OS_NAME}" ==  "Darwin" ]]; then
 fi
 
 # Sublime Text preferences
-if [[ -d "~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User" ]]; then rsync -a "~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/" ${BACKUPDIR}/SublimeText/; fi
+if [[ -d "~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User" ]]; then rsync -a "~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/" "${BACKUPDIR}"/SublimeText/; fi
 echo "Sublime Text preferences exported if exist."; echo
 
 # pip modules
-command -v pip3 > /dev/null && mkdir -p ${BACKUPDIR}/install && pip3 list | cut -d " " -f 1 | tail -n +3 > ${BACKUPDIR}/install/pip
+command -v pip3 > /dev/null && mkdir -p "${BACKUPDIR}"/install && pip3 list | cut -d " " -f 1 | tail -n +3 > "${BACKUPDIR}"/install/pip
 echo "List of installed Python Packages (PyP) exported if exist."; echo
 
 # gpg settings
-if [[ -f ~/.gnupg/pubring.kbx ]]; then rsync -a ~/.gnupg/pubring.kbx ${BACKUPDIR}/gnupg/; fi
-if [[ -d ~/.gnupg/openpgp-revocs.d ]]; then rsync -a ~/.gnupg/openpgp-revocs.d/ ${BACKUPDIR}/gnupg/openpgp-revocs.d/; fi
-if [[ -d ~/.gnupg/private-keys-v1.d ]]; then rsync -a ~/.gnupg/private-keys-v1.d/ ${BACKUPDIR}/gnupg/private-keys-v1.d/; fi
-command -v gpg > /dev/null && mkdir -p "${BACKUPDIR}/gnupg/" && gpg --export-ownertrust > ${BACKUPDIR}/gnupg/ownertrust.txt
+if [[ -f ~/.gnupg/pubring.kbx ]]; then mkdir -p "${BACKUPDIR}"/gnupg && rsync -a ~/.gnupg/pubring.kbx "${BACKUPDIR}"/gnupg/; fi
+if [[ -d ~/.gnupg/openpgp-revocs.d ]]; then mkdir -p "${BACKUPDIR}"/gnupg && rsync -a ~/.gnupg/openpgp-revocs.d/ "${BACKUPDIR}"/gnupg/openpgp-revocs.d/; fi
+if [[ -d ~/.gnupg/private-keys-v1.d ]]; then mkdir -p "${BACKUPDIR}"/gnupg && rsync -a ~/.gnupg/private-keys-v1.d/ "${BACKUPDIR}"/gnupg/private-keys-v1.d/; fi
+command -v gpg > /dev/null && if [[ -f ~/.gnupg/trustdb.gpg ]]; then mkdir -p "${BACKUPDIR}"/gnupg/ && gpg --export-ownertrust > "${BACKUPDIR}"/gnupg/ownertrust.txt; fi
 echo "gpg keys and settings exported if exist."; echo
 
 echo "Bash settings correctly saved in ${BACKUPDIR}"

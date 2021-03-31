@@ -35,9 +35,9 @@ echo "`date`: FINISHED: brew upgrade"
 
 echo ""
 
-echo "`date`: RUNNING: brew cask upgrade"
+echo "`date`: RUNNING: brew upgrade --cask"
 /usr/local/bin/brew upgrade --cask
-echo "`date`: FINISHED: brew cask upgrade"
+echo "`date`: FINISHED:  brew upgrade --cask"
 
 echo ""
 

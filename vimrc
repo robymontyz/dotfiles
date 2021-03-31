@@ -20,6 +20,7 @@ set backspace=indent,eol,start  " backspace anything
 set scrolloff=4                 " number of lines above and below cursor when scrolling
 "set textwidth=80               " max length of a line before wrapping it
 set colorcolumn=74              " highlight column after 'textwidth'
+set splitright                  " split vertically by default
 
 " display tabs, trailing spaces and other special characters
 " :set list/list! to toggle
@@ -86,16 +87,29 @@ set laststatus=2    " Always display the status line
 
 " ======== Mappings ========
 " Clear highlighting on escape in normal mode
-nnoremap <esc> :noh<return><esc>
-nnoremap <esc>^[ <esc>^[
+nnoremap <ESC> :noh<return><ESC>
+nnoremap <ESC>^[ <ESC>^[
 
 " ctrl+t create a new tab
 " ctrl+w close current tab
 " ctrl+arrows navigate tabs
-map <C-t> :tabnew<cr>
-map <C-w> :tabclose<cr>
-map <C-left> :tabp<cr>
-map <C-right> :tabn<cr>
+"noremap <C-t> :tabnew<CR>
+"noremap <C-w> :tabclose<CR>
+noremap <C-left> :tabp<CR>
+noremap <C-right> :tabn<CR>
+
+" Autocomplete brackets in insert mode
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ` ``<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O<TAB>
+inoremap {;<CR> {<CR>};<ESC>O<TAB>
+
+" Allow saving of files as sudo when I forgot to start vim using sudo
+cnoremap w!! execute 'silent! write !sudo /usr/bin/tee % > /dev/null' <bar> edit!
 
 
 " ======== Autocmds ========

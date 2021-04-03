@@ -193,10 +193,10 @@ chksum(){
 # %F{...}     :  colors, see https://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html
 # %f          :  reset to default color
 # %(!.        :  conditional depending on privileged user
+# Alternatives to prompt: ❱›
 #PROMPT='%(?..%F{red}?%? )%B%F{240}%2~%b%f %(?.%F{green}.%F{red})%(!.#.➜)%f '
 #PROMPT='[%B%*%b] %(!.%B%F{red}%n%f%b.%B%F{blue}%n%f%b)@%B%F{blue}%m%f%b:%B%F{yellow}%2~%f%b [%B!%!%b|%(?.%F{green}%?%f.%F{red}%?%f)]
 #╰─%B%F{blue}$%f%b '
 PROMPT='[%*] %(!.%F{red}%n%f%b.%F{blue}%n%f%b):%F{yellow}%-80(l.%~.%60<...<%~%<<)%f%b
-%B%(?.%F{green}›%f.%F{red}›%f)%b '
-# Alternatives to prompt: ❱›
-PROMPT2='%_❱ '
+%(?.%F{green}›%f.%F{red}›%f) '
+PROMPT2='%_› '

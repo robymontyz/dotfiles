@@ -212,8 +212,8 @@ if [[ $? -eq 0 ]]; then
 	if [[ -f ~/gnupg/trustdb.gpg ]]; then mv ~/.gnupg/trustdb.gpg ~/.gnupg/trustdb.OLD; fi
 	if [[ -f "${BACKUPDIR}"/gnupg/ownertrust.txt ]]; then gpg --import-ownertrust < "${BACKUPDIR}"/gnupg/ownertrust.txt; fi
 	# fix gnupg folder permissions
-	if [[-d ~/.gnupg ]]; then chmod 700 ~/.gnupg; fi
-	if [[-f ~/.gnupg/pubring.kbx ]]; then chmod 600 ~/.gnupg/pubring.kbx; fi
+	if [[ -d ~/.gnupg ]]; then chmod 700 ~/.gnupg; fi
+	if [[ -f ~/.gnupg/pubring.kbx ]]; then chmod 600 ~/.gnupg/pubring.kbx; fi
 	echo "gpg keys and settings imported."; echo
 
 	. ~/.bashrc   # reload bash configuration

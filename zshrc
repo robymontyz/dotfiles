@@ -6,9 +6,11 @@
 # ======== Options ========
 # colored ls output
 if [[ "${OSTYPE}" == "darwin"* ]]; then
-	# under macOS
+	# only in macOS
 	# (for customization add LSCOLORS var)
 	export CLICOLOR=1
+	# opt out of Homebrew's analytics
+	export HOMEBREW_NO_ANALYTICS=1
 elif [[ "${OSTYPE}" == "linux"* ]]; then
 	# under Linux
 	alias ls='ls --color=auto'
@@ -49,46 +51,74 @@ export MBOX='~/.mbox'
 # For gpg-agent
 export GPG_TTY=$(tty)
 
-# opt out of Homebrew's analytics
-export HOMEBREW_NO_ANALYTICS=1
-
+# For SSH
+export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
 
 # ======== Aliases ========
 if [[ "${OSTYPE}" == "darwin"* ]]; then
 	# only in macOS
 	# output lsusb-like
 	alias lsusb='system_profiler SPUSBDataType'
+	alias ytdl="cd ~/Downloads/ && youtube-dl -f 'bestaudio[ext=m4a]' -o '%(title)s.%(ext)s'"
+	alias polito="cd /Volumes/MacOS-HDD_500GB/Data/Documents/Google\ Drive/Documents/Universita/polito/AA\ 2020-2021"
+elif [[ `grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null` ]]; then
+	# in Windows WSL
+	alias polito="cd /mnt/d/Documents/Google\ Drive/Documents/Universita/polito/AA\ 2020-2021/"
 fi
 # (l)ong, (a)ll entries, (h)uman-readable, color (G)
 alias la='ls -lahG'
 alias grep='grep --color=auto'
 # search for all git projects in user home folder and show their statuses
 alias ggits='find -L ~ -type d -name .git -print -exec bash -c '\''cd -L $0 && cd .. && git status -s && echo'\'' {} \; -prune'
-alias ytdl="cd ~/Downloads/ && youtube-dl -f bestaudio[ext=m4a] -o '%(title)s.%(ext)s' --embed-thumbnail --add-metadata"
 
 alias -s git='git clone'
 
 # ======== Functions ========
-# moves file to ~/.Trash (use instead of rm)
-trash(){
-	if [[ $# -eq 0 ]]; then
-		echo "Usage: trash <file> ..."
-		return 1
-	fi
-
-	for FILE in "$@"; do
-		local DATE=$(date +%Y%m%d%H%M%S)
-		# if already in trash move it in a new folder with date
-		if [[ -f "${HOME}/.Trash/${FILE}" ]]; then
-			mkdir "${HOME}/.Trash/${DATE}" &&\
-			mv "${FILE}" ${HOME}/.Trash/${DATE} &&\
-			echo "${FILE} trashed in ${DATE}/!"
-		else
-			mv "${FILE}" "${HOME}/.Trash/" &&\
-			echo "${FILE} trashed!"
+if [[ "${OSTYPE}" == "darwin"* ]]; then
+	# only in macOS
+	# moves file to ~/.Trash (use instead of rm)
+	trash(){
+		if [[ $# -eq 0 ]]; then
+			echo "Usage: trash <file> ..."
+			return 1
 		fi
-	done
-}
+
+		for FILE in "$@"; do
+			local DATE=$(date +%Y%m%d%H%M%S)
+			# if already in trash move it in a new folder with date
+			if [[ -f "${HOME}/.Trash/${FILE}" ]]; then
+				mkdir "${HOME}/.Trash/${DATE}" &&\
+				mv "${FILE}" ${HOME}/.Trash/${DATE} &&\
+				echo "${FILE} trashed in ${DATE}/!"
+			else
+				mv "${FILE}" "${HOME}/.Trash/" &&\
+				echo "${FILE} trashed!"
+			fi
+		done
+	}
+
+	# Check if a password has been disclosed on a 27GB archive
+	chkpsw(){
+		file="/Volumes/MacOS-HDD_500GB/Data/Downloads/Transmission/pwned-passwords-sha1-ordered-by-hash-v7.txt"
+		if [[ $# -ne 1 ]]; then
+			echo "Usage: chkpsw <password_to_check>"
+			return 1
+		fi
+		printf "$1" | shasum | tr '[:lower:]' '[:upper:]' | sed 's/\-//g' | xargs -I {} look {} "$file"
+	}
+
+	# Open man page in Preview as pdf
+	manpdf(){
+		man -t "$@" | open -f -a "Preview"
+		rm /private/tmp/open_*
+	}
+
+	# Open x-man pages
+	xman(){
+		open x-man-page://"$@"
+	}
+fi
 
 # Wake-On-LAN a PC with a specified MAC address
 wol() {
@@ -149,28 +179,12 @@ chksum(){
 		|| echo "WARNING: sha1 NOT identical!"
 }
 
-# Check if a password has been disclosed on a 27GB archive
-chkpsw(){
-	file="/Volumes/MacOS-HDD_500GB/Data/Downloads/Transmission/pwned-passwords-sha1-ordered-by-hash-v7.txt"
-	if [[ $# -ne 1 ]]; then
-		echo "Usage: chkpsw <password_to_check>"
-		return 1
-	fi
-	printf "$1" | shasum | tr '[:lower:]' '[:upper:]' | sed 's/\-//g' | xargs -I {} look {} "$file"
-}
-
-# Open man page in Preview as pdf
-manpdf(){
-	man -t "$@" | open -f -a "Preview"
-	rm /private/tmp/open_*
-}
-
-# Open x-man pages
-xman(){
-	open x-man-page://"$@"
-}
-
 # ======== Prompt ========
+# PROMPT1-4 is the same as PS1-4
+# PS1 primary prompt : before command is read
+# PS2 secondary prompt: printed when shell needs more info for command (default: "%_> ")
+# PS3 selection prompt: used within a select loop (default: "?# ")
+# PS4 execution prompt: (default: "+")
 # %(?.√.?%?)  :  if return code `?` is 0, show `√`, else show `?%?`
 # %?          :  exit code of previous command
 # %1~         :  current working dir, shortening home to `~`, show the last `1` element
@@ -182,5 +196,7 @@ xman(){
 #PROMPT='%(?..%F{red}?%? )%B%F{240}%2~%b%f %(?.%F{green}.%F{red})%(!.#.➜)%f '
 #PROMPT='[%B%*%b] %(!.%B%F{red}%n%f%b.%B%F{blue}%n%f%b)@%B%F{blue}%m%f%b:%B%F{yellow}%2~%f%b [%B!%!%b|%(?.%F{green}%?%f.%F{red}%?%f)]
 #╰─%B%F{blue}$%f%b '
-PROMPT='[%B%*%b] %(!.%B%F{red}%n%f%b.%B%F{blue}%n%f%b):%B%F{yellow}%-80(l.%~.%60<...<%~%<<)%f%b
+PROMPT='[%*] %(!.%F{red}%n%f%b.%F{blue}%n%f%b):%F{yellow}%-80(l.%~.%60<...<%~%<<)%f%b
 %B%(?.%F{green}›%f.%F{red}›%f)%b '
+# Alternatives to prompt: ❱›
+PROMPT2='%_❱ '

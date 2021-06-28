@@ -38,6 +38,12 @@ You can clone/download the repository wherever you want. The script will copy th
 
 	* `.inputrc`
 
+* ### zsh
+
+	* `.zshrc`
+
+	* `.zprofile`
+
 * ### ViM
 
 	* `.vimrc`
@@ -49,24 +55,6 @@ You can clone/download the repository wherever you want. The script will copy th
 	* plugins:
 
 		- [Smart Tabs](https://www.vim.org/scripts/script.php?script_id=231)
-
-* ### Homebrew (macOS only)
-
-	* install [Homebrew](https://brew.sh), if not installed yet
-
-	* install all the formulae specified in `install/brew`
-
-	* install all the casks specified in `install/brew-cask`
-
-* ### mas (macOS only)
-
-	* install [mas](https://github.com/mas-cli/mas), if not installed yet
-
-	* install all the apps specified in `install/mas`
-
-* ### mas (macOS only)
-
-	* install all the [pip](https://pypi.org) modules specified in `install/pip`
 
 * ### Git
 
@@ -90,18 +78,6 @@ You can clone/download the repository wherever you want. The script will copy th
 
 	In a standard macOS installation, GNU Screen version is probably <4.01, so I strongly recommend to install the latest version with [Homebrew](https://brew.sh).
 
-* ### GnuGP
-
-	* `pubring.kbx`
-
-	* `openpgp-revocs.d`
-
-	* `private-keys-v1.d`
-
-	* `ownertrust`
-
-	**N.B.** *My PGP keyring, obviously, is not actually included in this repo but you can add it by yourself inside `.gpg/` folder.*
-
 * ### SSH
 
 	* SSH keys
@@ -109,6 +85,8 @@ You can clone/download the repository wherever you want. The script will copy th
 	* `ssh_config` and `sshd_config`
 
 	**N.B.** *My SSH keys, obviously, are not actually included in this repo but you can add them by yourself inside `.ssh/` folder.*
+
+* ### Various personal shell scripts
 
 * ### Install and export scripts
 
@@ -124,15 +102,19 @@ You can clone/download the repository wherever you want. The script will copy th
 
 	Deprecated in favor of launchd agents.
 
-* ### launchd agents (launchd users or macOS only)
+* ### Homebrew (macOS only)
 
-	`import_bash_settings.sh` will install launchd agents to start some automated script I wrote. You can find the scripts [here](https://github.com/robymontyz).
+	* install [Homebrew](https://brew.sh), if not installed yet
 
-	*If you don't want this feature, you can comment these lines.*
+	* install all the formulae specified in `install/brew`
 
-* ### Terminal.app and XCode *Solarized Dark* themes (macOS only)
+	* install all the casks specified in `install/brew-cask`
 
-	`import_bash_settings.sh` will install *Solarized Dark* color schemes for Terminal.app and XCode.  
+* ### mas (macOS only)
+
+	* install [mas](https://github.com/mas-cli/mas), if not installed yet
+
+	* install all the apps specified in `install/mas`
 
 * ### QuickLook plugins (macOS only)
 
@@ -146,6 +128,38 @@ You can clone/download the repository wherever you want. The script will copy th
 
 	* [QLStephen](https://github.com/whomwah/qlstephen)
 
+* ### launchd agents (launchd users or macOS only)
+
+	`import_bash_settings.sh` will install launchd agents to start some automated script I wrote. You can find the scripts [here](https://github.com/robymontyz).
+
+	*If you don't want this feature, you can comment these lines.*
+
+* ### Screen Savers (macOS only)
+
+	* [October30 by lekevicius](https://github.com/lekevicius/october30)
+
+* ### Terminal.app and XCode *Solarized Dark* themes (macOS only)
+
+	`import_bash_settings.sh` will install *Solarized Dark* color schemes for Terminal.app and XCode.
+
+* ### SublimeText preferences
+
+* ### PyPI
+
+	* install all the [pip](https://pypi.org) modules specified in `install/pip`
+
+* ### GnuGP
+
+	* `pubring.kbx`
+
+	* `openpgp-revocs.d`
+
+	* `private-keys-v1.d`
+
+	* `ownertrust`
+
+	**N.B.** *My PGP keyring, obviously, is not actually included in this repo but you can add it by yourself inside `.gpg/` folder.*
+
 ## Feedback
 
 Suggestions and improvements are [welcome](https://github.com/robymontyz/dotfiles/issues).
@@ -154,7 +168,7 @@ Suggestions and improvements are [welcome](https://github.com/robymontyz/dotfile
 
 Follow me on Twitter: [![twitter](https://img.shields.io/twitter/follow/espadrine.svg?style=social&label=@robymontyz)](https://twitter.com/robymontyz)
 
-## Thanks to…
+## Thanks
 
 * [StackOverflow](https://stackoverflow.com)
 * [sharfah](https://github.com/sharfah/dotfiles) and his fantastic [blog posts](http://fahdshariff.blogspot.it/2011/03/my-bash-profile-part-i.html)

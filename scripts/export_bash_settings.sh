@@ -121,6 +121,11 @@ if [[ "${_OS_NAME}" ==  "Darwin" ]]; then
 	ls ~/Library/LaunchAgents/com.scripts.* 1>/dev/null 2>&1 && rsync -a ~/Library/LaunchAgents/com.scripts.* "${BACKUPDIR}"/LaunchAgents/
 	echo "LaunchAgents exported if exist."; echo
 	
+	# ======== screen saver ======== #
+	# Screen saver (macOS only)
+	mkdir -p "${BACKUPDIR}/Screen Savers/" && rsync -a ~/Library/Screen\ Savers/ "${BACKUPDIR}/Screen Savers/"
+	echo "Screensavers exported if exist."; echo
+
 	# ======== Themes ======== #
 	# themes for various macOS apps
 	if [[ -d ~/.themes ]]; then rsync -a ~/.themes/ "${BACKUPDIR}"/themes/; fi

@@ -3,6 +3,9 @@
 # _OS_NAME="$(uname -s)"
 # bash set $OSTYPE, I can check it to know OS
 
+WINDOWS=1
+grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null && WINDOWS=0
+
 # ======== Options ========
 if [[ "${OSTYPE}" == "darwin"* ]]; then
 	# only in macOS
@@ -66,7 +69,7 @@ if [[ "${OSTYPE}" == "darwin"* ]]; then
 	alias lsusb="system_profiler SPUSBDataType"
 	alias ytdl="cd ~/Downloads/ && youtube-dl -f 'bestaudio[ext=m4a]' -o '%(title)s.%(ext)s'"
 	alias polito="cd /Volumes/MacOS-HDD_500GB/Data/Documents/Google\ Drive/Documents/Universita/polito/AA\ 2020-2021"
-elif [[ `grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null` ]]; then
+elif [[ ${WINDOWS} ]]; then
 	# in Windows WSL
 	alias polito="cd /mnt/d/Documents/Google\ Drive/Documents/Universita/polito/AA\ 2020-2021/"
 fi
@@ -75,6 +78,9 @@ alias la="ls -lahG"
 alias grep="grep --color=auto"
 # search for all git projects in user home folder and show their statuses
 alias ggits='find -L ~ -type d -name .git -print -exec bash -c '\''cd -L $0 && cd .. && git status -s && echo'\'' {} \; -prune'
+alias pip_upgrade='pip install -U pip'
+alias pip_upgrade_all='pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip3 install -U'
+
 
 # ======== Functions ========
 if [[ "${OSTYPE}" == "darwin"* ]]; then

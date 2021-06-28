@@ -178,6 +178,11 @@ if [[ $? -eq 0 ]]; then
 		find ~/Library/LaunchAgents -type f -name "com.scripts.*" -exec /usr/libexec/PlistBuddy -c "Print Label" {} \; | xargs launchctl start
 		echo "LaunchAgents imported."; echo
 
+		# ======== screen saver ======== #
+		# Screen saver (macOS only)
+		rsync -a "${BACKUPDIR}/Screen Savers/" ~/Library/Screen\ Savers/
+		echo "Screensavers imported."; echo
+
 		# ======== Themes ======== #
 		# Install 'Solarized Dark' color schemes
 		# Color scheme for Terminal.app (macOS only)

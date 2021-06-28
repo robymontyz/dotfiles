@@ -71,9 +71,9 @@ term screen-256color
 # creating default layout
 layout autosave on
 layout new one
-screen -t Shell   0 bash
-screen -t ViM     1 bash
-screen -t Develop 2 bash
+screen -t Shell   0
+screen -t ViM     1
+screen -t Develop 2
 select 0
 split
 split -v

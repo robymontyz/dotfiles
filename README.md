@@ -1,5 +1,5 @@
 [![License](https://img.shields.io/github/license/robymontyz/dotfiles?style=for-the-badge)](./LICENSE)
-[![Paypal](https://img.shields.io/badge/-donate-blue?style=for-the-badge&logo=paypal)](paypal.me/robymontyz)
+[![Paypal](https://img.shields.io/badge/-donate-blue?style=for-the-badge&logo=paypal)](https://paypal.me/robymontyz)
 ![Made with love](https://img.shields.io/badge/made_with-❤-ff69b4?style=for-the-badge)
 
 # robymontyz's dotfiles

@@ -910,7 +910,7 @@ cat > README.md << EOF
 [![Forks](https://img.shields.io/github/forks/robymontyz/$arg?style=for-the-badge)](https://github.com/robymontyz/$arg/network/members)
 [![Stars](https://img.shields.io/github/stars/robymontyz/$arg?style=for-the-badge)](https://github.com/robymontyz/$arg/stargazers)
 [![Issues](https://img.shields.io/github/issues/robymontyz/$arg?style=for-the-badge)](https://github.com/robymontyz/$arg/issues)
-[![Paypal](https://img.shields.io/badge/-Donate-blue?style=for-the-badge&logo=paypal)](paypal.me/robymontyz)
+[![Paypal](https://img.shields.io/badge/-Donate-blue?style=for-the-badge&logo=paypal)](https://paypal.me/robymontyz)
 ![Made with love](https://img.shields.io/badge/made_with-❤-ff69b4?style=for-the-badge)
 
 <p align="center">

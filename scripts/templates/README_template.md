@@ -8,7 +8,7 @@
 [![Forks](https://img.shields.io/github/forks/robymontyz/repo_name?style=for-the-badge)](https://github.com/robymontyz/repo_name/network/members)
 [![Stars](https://img.shields.io/github/stars/robymontyz/repo_name?style=for-the-badge)](https://github.com/robymontyz/repo_name/stargazers)
 [![Issues](https://img.shields.io/github/issues/robymontyz/repo_name?style=for-the-badge)](https://github.com/robymontyz/repo_name/issues)
-[![Paypal](https://img.shields.io/badge/-Donate-blue?style=for-the-badge&logo=paypal)](paypal.me/robymontyz)
+[![Paypal](https://img.shields.io/badge/-Donate-blue?style=for-the-badge&logo=paypal)](https://paypal.me/robymontyz)
 ![Made with love](https://img.shields.io/badge/made_with-❤-ff69b4?style=for-the-badge)
 
 <p align="center">

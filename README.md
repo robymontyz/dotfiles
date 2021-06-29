@@ -1,22 +1,45 @@
+[![License](https://img.shields.io/github/license/robymontyz/dotfiles?style=for-the-badge)](./LICENSE)
+[![Paypal](https://img.shields.io/badge/-donate-blue?style=for-the-badge&logo=paypal)](paypal.me/robymontyz)
+![Made with love](https://img.shields.io/badge/made_with-❤-ff69b4?style=for-the-badge)
+
 # robymontyz's dotfiles
+
+> Collection of my personal dotfiles, settings and preferences for Linux, macOS and Windows
 
 ![Screenshot of my shell prompt and workflow using GNU Screen](assets/workflow.png)
 
-## Dependencies
+## Table Of Contents
 
-* git
+- [Getting Started](#getting-started)
+- [Configurations included](#configurations-included)
+- [Contributing](#contributing)
+- [Authors](#authors)
+- [Support](#support)
+- [Resources](#resources)
+- [Credits](#credits)
+- [License](#license)
 
-* rsync
+## Getting Started
 
-* screen (version >4.01, see more details below)
+[(Back to top)](#table-of-contents)
 
-* gpg [optional]
+### Prerequisites
 
-* OpenSSH [optional]
+- zsh
 
-* Xcode [optional]
+- git
 
-## Installation
+- rsync
+
+- screen (version >4.01, see more details below)
+
+- gpg [optional]
+
+- OpenSSH [optional]
+
+- Xcode [optional]
+
+### Installation
 
 **Warning:** These dotfiles are suited mostly on my needs for macOS. If you want to try them, you should first fork this repository, review the code, and remove things you don’t want or need. **Use at your own risk!**
 
@@ -30,43 +53,45 @@ You can clone/download the repository wherever you want. The script will copy th
 
 ## Configurations included
 
-* ### Bash
+[(Back to top)](#table-of-contents)
 
-	* `.bashrc`
+- ### Bash
 
-	* `.bash_profile`
+	- `.bashrc`
 
-	* `.inputrc`
+	- `.bash_profile`
 
-* ### zsh
+	- `.inputrc`
 
-	* `.zshrc`
+- ### zsh
 
-	* `.zprofile`
+	- `.zshrc`
 
-* ### ViM
+	- `.zprofile`
 
-	* `.vimrc`
+- ### ViM
 
-	* italian spelling dictionary
+	- `.vimrc`
 
-	* *Solarized Dark* theme
+	- italian spelling dictionary
 
-	* plugins:
+	- *Solarized Dark* theme
+
+	- plugins:
 
 		- [Smart Tabs](https://www.vim.org/scripts/script.php?script_id=231)
 
-* ### Git
+- ### Git
 
-	* `.gitconfig`
+	- `.gitconfig`
 
-	* `.gitignore` sample
+	- `.gitignore` sample
 
-	* global `.gitignore` sample (`.config/git/ignore`)
+	- global `.gitignore` sample (`.config/git/ignore`)
 
-* ### GNU Screen
+- ### GNU Screen
 
-	* `.screenrc`
+	- `.screenrc`
 
 	**Warning**
 
@@ -78,103 +103,132 @@ You can clone/download the repository wherever you want. The script will copy th
 
 	In a standard macOS installation, GNU Screen version is probably <4.01, so I strongly recommend to install the latest version with [Homebrew](https://brew.sh).
 
-* ### SSH
+- ### SSH
 
-	* SSH keys
+	- SSH keys
 
-	* `ssh_config` and `sshd_config`
+	- `ssh_config` and `sshd_config`
 
 	**N.B.** *My SSH keys, obviously, are not actually included in this repo but you can add them by yourself inside `.ssh/` folder.*
 
-* ### Various personal shell scripts
+- ### Various personal shell scripts
 
-* ### Install and export scripts
+- ### Install and export scripts
 
-	* `import_bash_settings.sh` (see [Installation](#installation))
+	- `import_bash_settings.sh` (see [Installation](#installation))
 
-	* `export_bash_settings.sh`
+	- `export_bash_settings.sh`
 
 	*You can manually specify a backup directory where to export files with `export_bash_settings.sh` modifying `$BACKUPDIR` inside the script.*
 
 	*Same applies to `import_bash_settings.sh`.*
 
-* ### Crontab
+- ### Crontab
 
 	Deprecated in favor of launchd agents.
 
-* ### Homebrew (macOS only)
+- ### Homebrew (macOS only)
 
-	* install [Homebrew](https://brew.sh), if not installed yet
+	- install [Homebrew](https://brew.sh), if not installed yet
 
-	* install all the formulae specified in `install/brew`
+	- install all the formulae specified in `install/brew`
 
-	* install all the casks specified in `install/brew-cask`
+	- install all the casks specified in `install/brew-cask`
 
-* ### mas (macOS only)
+- ### mas (macOS only)
 
-	* install [mas](https://github.com/mas-cli/mas), if not installed yet
+	- install [mas](https://github.com/mas-cli/mas), if not installed yet
 
-	* install all the apps specified in `install/mas`
+	- install all the apps specified in `install/mas`
 
-* ### QuickLook plugins (macOS only)
+- ### QuickLook plugins (macOS only)
 
-	* [QLmarkdown](https://github.com/toland/qlmarkdow)
+	- [QLmarkdown](https://github.com/toland/qlmarkdow)
 
-	* [BetterZipQL](https://macitbetter.com/downloads)
+	- [BetterZipQL](https://macitbetter.com/downloads)
 
-	* [QLColorCode](https://github.com/n8gray/QLColorCode)
+	- [QLColorCode](https://github.com/n8gray/QLColorCode)
 
-	* [qlImageSize](https://github.com/Nyx0uf/qlImageSize)
+	- [qlImageSize](https://github.com/Nyx0uf/qlImageSize)
 
-	* [QLStephen](https://github.com/whomwah/qlstephen)
+	- [QLStephen](https://github.com/whomwah/qlstephen)
 
-* ### launchd agents (launchd users or macOS only)
+- ### launchd agents (launchd users or macOS only)
 
 	`import_bash_settings.sh` will install launchd agents to start some automated script I wrote. You can find the scripts [here](https://github.com/robymontyz).
 
 	*If you don't want this feature, you can comment these lines.*
 
-* ### Screen Savers (macOS only)
+- ### Screen Savers (macOS only)
 
-	* [October30 by lekevicius](https://github.com/lekevicius/october30)
+	- [October30 by lekevicius](https://github.com/lekevicius/october30)
 
-* ### Terminal.app and XCode *Solarized Dark* themes (macOS only)
+- ### Terminal.app and XCode *Solarized Dark* themes (macOS only)
 
 	`import_bash_settings.sh` will install *Solarized Dark* color schemes for Terminal.app and XCode.
 
-* ### SublimeText preferences
+- ### SublimeText preferences
 
-* ### PyPI
+- ### PyPI
 
-	* install all the [pip](https://pypi.org) modules specified in `install/pip`
+	- install all the [pip](https://pypi.org) modules specified in `install/pip`
 
-* ### GnuGP
+- ### GnuGP
 
-	* `pubring.kbx`
+	- `pubring.kbx`
 
-	* `openpgp-revocs.d`
+	- `openpgp-revocs.d`
 
-	* `private-keys-v1.d`
+	- `private-keys-v1.d`
 
-	* `ownertrust`
+	- `ownertrust`
 
 	**N.B.** *My PGP keyring, obviously, is not actually included in this repo but you can add it by yourself inside `.gpg/` folder.*
 
-## Feedback
+## Contributing
 
-Suggestions and improvements are [welcome](https://github.com/robymontyz/dotfiles/issues).
+[(Back to top)](#table-of-contents)
 
-## Author
+Suggestions and improvements are [welcome](../../issues).
 
-Follow me on Twitter: [![twitter](https://img.shields.io/twitter/follow/espadrine.svg?style=social&label=@robymontyz)](https://twitter.com/robymontyz)
+Styles used:
 
-## Thanks
+- Versioning system standard: [Semantic Versioning](http://semver.org/)
 
-* [StackOverflow](https://stackoverflow.com)
-* [sharfah](https://github.com/sharfah/dotfiles) and his fantastic [blog posts](http://fahdshariff.blogspot.it/2011/03/my-bash-profile-part-i.html)
-* [mathiasbynens](https://github.com/mathiasbynens/dotfiles) for this README
-* [paulirish](https://github.com/paulirish/dotfiles)
-* [Michael Geddes](https://www.vim.org/scripts/script.php?script_id=231) for Smart Tabs plugin for ViM
-* [Ethan Schoonover - altercation](https://github.com/altercation/vim-colors-solarized) for creating *Solarized Dark* and its ViM version
-* [mbadolato](https://github.com/mbadolato/iTerm2-Color-Schemes) for *Solarized Dark* Terminal.app theme
-* [ArtSabintsev](https://github.com/ArtSabintsev/Solarized-Dark-for-Xcode) for *Solarized Dark* XCode theme
+- Commit messages standard: [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+
+## Authors
+
+[(Back to top)](#table-of-contents)
+
+- robymontyz - [![GitHub](https://img.shields.io/github/followers/robymontyz?label=%40robymontyz&style=social)](https://twitter.com/robymontyz) - [![Twitter](https://img.shields.io/twitter/follow/robymontyz?label=%40robymontyz&style=social)](https://twitter.com/robymontyz)
+
+## Support
+
+[(Back to top)](#table-of-contents)
+
+[![Paypal](https://img.shields.io/badge/-donate-blue?style=for-the-badge&logo=paypal)](paypal.me/robymontyz)
+
+## Resources
+
+[(Back to top)](#table-of-contents)
+
+- [StackOverflow](https://stackoverflow.com)
+
+## Credits
+
+[(Back to top)](#table-of-contents)
+
+- [sharfah](https://github.com/sharfah/dotfiles) and his fantastic [blog posts](http://fahdshariff.blogspot.it/2011/03/my-bash-profile-part-i.html)
+- [mathiasbynens](https://github.com/mathiasbynens/dotfiles) for this README
+- [paulirish](https://github.com/paulirish/dotfiles)
+- [Michael Geddes](https://www.vim.org/scripts/script.php?script_id=231) for Smart Tabs plugin for ViM
+- [Ethan Schoonover - altercation](https://github.com/altercation/vim-colors-solarized) for creating *Solarized Dark* and its ViM version
+- [mbadolato](https://github.com/mbadolato/iTerm2-Color-Schemes) for *Solarized Dark* Terminal.app theme
+- [ArtSabintsev](https://github.com/ArtSabintsev/Solarized-Dark-for-Xcode) for *Solarized Dark* XCode theme
+
+## License
+
+[(Back to top)](#table-of-contents)
+
+All the file in this repository are licensed and distributed under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl.html) (**GPLv3**), unless otherwise specified - see the [LICENSE](./LICENSE) file for details.

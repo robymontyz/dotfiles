@@ -201,13 +201,13 @@ Styles used:
 
 [(Back to top)](#table-of-contents)
 
-- robymontyz - [![GitHub](https://img.shields.io/github/followers/robymontyz?label=%40robymontyz&style=social)](https://twitter.com/robymontyz) - [![Twitter](https://img.shields.io/twitter/follow/robymontyz?label=%40robymontyz&style=social)](https://twitter.com/robymontyz)
+- robymontyz - [![GitHub](https://img.shields.io/github/followers/robymontyz?label=%40robymontyz&style=social)](https://github.com/robymontyz) - [![Twitter](https://img.shields.io/twitter/follow/robymontyz?label=%40robymontyz&style=social)](https://twitter.com/robymontyz)
 
 ## Support
 
 [(Back to top)](#table-of-contents)
 
-[![Paypal](https://img.shields.io/badge/-donate-blue?style=for-the-badge&logo=paypal)](paypal.me/robymontyz)
+[![Paypal](https://img.shields.io/badge/-donate-blue?style=for-the-badge&logo=paypal)](https://paypal.me/robymontyz)
 
 ## Resources
 

@@ -1010,7 +1010,7 @@ Suggestions and improvements are [welcome](../../issues).
 
 [(Back to top)](#table-of-contents)
 
-- [alessiroberto.com](https://www.alessiroberto.com) - GitHub [@robymontyz](https://github.com/robymontyz) - [![Twitter](https://img.shields.io/twitter/follow/robymontyz?label=%40robymontyz&style=social)](https://twitter.com/robymontyz)
+- robymontyz - [alessiroberto.com](https://www.alessiroberto.com) - [![GitHub](https://img.shields.io/github/followers/robymontyz?label=%40robymontyz&style=social)](https://github.com/robymontyz) - [![Twitter](https://img.shields.io/twitter/follow/robymontyz?label=%40robymontyz&style=social)](https://twitter.com/robymontyz)
 
 See also the list of [contributors](./contributors.md) who participated in this project.
 
@@ -1018,7 +1018,7 @@ See also the list of [contributors](./contributors.md) who participated in this 
 
 [(Back to top)](#table-of-contents)
 
-[![Paypal](https://img.shields.io/badge/-Donate-blue?style=for-the-badge&logo=paypal)](paypal.me/robymontyz)
+[![Paypal](https://img.shields.io/badge/-Donate-blue?style=for-the-badge&logo=paypal)](https://paypal.me/robymontyz)
 
 ## Resources
 

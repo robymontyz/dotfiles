@@ -16,6 +16,7 @@ set mouse=a                     " enable mouse in all modes
 set wildmenu                    " make command mode (:) completion bash-like
 set wildmode=longest:full       " complete only until point of ambiguity
 set cryptmethod=blowfish2       " strongest encryption method for writing a locked file (using ':X')
+set whichwrap+=<,>,[,]          " allows the left and right arrow keys to wrap to next/previous line (<,> refers to arrows in normal mode; [,] in insert mode)
 set backspace=indent,eol,start  " backspace anything
 set scrolloff=4                 " number of lines above and below cursor when scrolling
 "set textwidth=80               " max length of a line before wrapping it

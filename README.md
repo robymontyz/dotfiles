@@ -1,12 +1,21 @@
+```
+______   _______  _______  _______  ___   ___      _______  _______ 
+|      | |       ||       ||       ||   | |   |    |       ||       |
+|  _    ||   _   ||_     _||    ___||   | |   |    |    ___||  _____|
+| | |   ||  | |  |  |   |  |   |___ |   | |   |    |   |___ | |_____ 
+| |_|   ||  |_|  |  |   |  |    ___||   | |   |___ |    ___||_____  |
+|       ||       |  |   |  |   |    |   | |       ||   |___  _____| |
+|______| |_______|  |___|  |___|    |___| |_______||_______||_______|
+```
+
 [![License](https://img.shields.io/github/license/robymontyz/dotfiles?style=for-the-badge)](./LICENSE)
 [![Paypal](https://img.shields.io/badge/-donate-blue?style=for-the-badge&logo=paypal)](https://paypal.me/robymontyz)
-![Made with love](https://img.shields.io/badge/made_with-❤-ff69b4?style=for-the-badge)
 
 # robymontyz's dotfiles
 
 > Collection of my personal dotfiles, settings and preferences for Linux, macOS and Windows
 
-![Screenshot of my shell prompt and workflow using GNU Screen](assets/workflow.png)
+![Screenshot of my shell prompt and workflow using GNU Screen](./assets/workflow.png)
 
 ## Table Of Contents
 
@@ -55,7 +64,7 @@ You can clone/download the repository wherever you want. The script will copy th
 
 [(Back to top)](#table-of-contents)
 
-- ### Bash
+- **Bash**
 
 	- `.bashrc`
 
@@ -63,13 +72,13 @@ You can clone/download the repository wherever you want. The script will copy th
 
 	- `.inputrc`
 
-- ### zsh
+- **Zsh**
 
 	- `.zshrc`
 
 	- `.zprofile`
 
-- ### ViM
+- **ViM**
 
 	- `.vimrc`
 
@@ -81,7 +90,7 @@ You can clone/download the repository wherever you want. The script will copy th
 
 		- [Smart Tabs](https://www.vim.org/scripts/script.php?script_id=231)
 
-- ### Git
+- **Git**
 
 	- `.gitconfig`
 
@@ -89,7 +98,7 @@ You can clone/download the repository wherever you want. The script will copy th
 
 	- global `.gitignore` sample (`.config/git/ignore`)
 
-- ### GNU Screen
+- **GNU Screen**
 
 	- `.screenrc`
 
@@ -103,7 +112,7 @@ You can clone/download the repository wherever you want. The script will copy th
 
 	In a standard macOS installation, GNU Screen version is probably <4.01, so I strongly recommend to install the latest version with [Homebrew](https://brew.sh).
 
-- ### SSH
+- **SSH**
 
 	- SSH keys
 
@@ -111,9 +120,11 @@ You can clone/download the repository wherever you want. The script will copy th
 
 	**N.B.** *My SSH keys, obviously, are not actually included in this repo but you can add them by yourself inside `.ssh/` folder.*
 
-- ### Various personal shell scripts
+- **Various personal shell scripts**
 
-- ### Install and export scripts
+- **Various templates**
+
+- **Install and export scripts**
 
 	- `import_bash_settings.sh` (see [Installation](#installation))
 
@@ -123,11 +134,11 @@ You can clone/download the repository wherever you want. The script will copy th
 
 	*Same applies to `import_bash_settings.sh`.*
 
-- ### Crontab
+- **Crontab**
 
 	Deprecated in favor of launchd agents.
 
-- ### Homebrew (macOS only)
+- **Homebrew (macOS only)**
 
 	- install [Homebrew](https://brew.sh), if not installed yet
 
@@ -135,13 +146,13 @@ You can clone/download the repository wherever you want. The script will copy th
 
 	- install all the casks specified in `install/brew-cask`
 
-- ### mas (macOS only)
+- **mas (macOS only)**
 
 	- install [mas](https://github.com/mas-cli/mas), if not installed yet
 
 	- install all the apps specified in `install/mas`
 
-- ### QuickLook plugins (macOS only)
+- **QuickLook plugins (macOS only)**
 
 	- [QLmarkdown](https://github.com/toland/qlmarkdow)
 
@@ -153,27 +164,27 @@ You can clone/download the repository wherever you want. The script will copy th
 
 	- [QLStephen](https://github.com/whomwah/qlstephen)
 
-- ### launchd agents (launchd users or macOS only)
+- **launchd agents (launchd users or macOS only)**
 
 	`import_bash_settings.sh` will install launchd agents to start some automated script I wrote. You can find the scripts [here](https://github.com/robymontyz).
 
 	*If you don't want this feature, you can comment these lines.*
 
-- ### Screen Savers (macOS only)
+- **Screen Savers (macOS only)**
 
 	- [October30 by lekevicius](https://github.com/lekevicius/october30)
 
-- ### Terminal.app and XCode *Solarized Dark* themes (macOS only)
+- **Terminal.app and XCode *Solarized Dark* themes (macOS only)**
 
 	`import_bash_settings.sh` will install *Solarized Dark* color schemes for Terminal.app and XCode.
 
-- ### SublimeText preferences
+- **SublimeText preferences**
 
-- ### PyPI
+- **PyPI**
 
 	- install all the [pip](https://pypi.org) modules specified in `install/pip`
 
-- ### GnuGP
+- **GnuGP**
 
 	- `pubring.kbx`
 
@@ -214,6 +225,7 @@ Styles used:
 [(Back to top)](#table-of-contents)
 
 - [StackOverflow](https://stackoverflow.com)
+- [Text to ASCII Art Generator](http://patorjk.com/software/taag/)
 
 ## Credits
 
@@ -232,3 +244,9 @@ Styles used:
 [(Back to top)](#table-of-contents)
 
 All the file in this repository are licensed and distributed under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl.html) (**GPLv3**), unless otherwise specified - see the [LICENSE](./LICENSE) file for details.
+
+-----
+
+<p align="center">
+  <img src="https://img.shields.io/badge/made_with-❤-ff69b4?style=for-the-badge">
+</p>

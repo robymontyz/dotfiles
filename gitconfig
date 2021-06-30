@@ -7,9 +7,12 @@
 [core]
 	editor = vim
 	excludesfile = ~/.config/git/ignore
+	autocrlf = false
 	#pager = less -+FX           # fix mouse scrolling of the pager
 [commit]
 	gpgSign = true
+[pull]
+	rebase = true               # use git pull --rebase by default
 [alias]
 	a = add
 	aa = add --all              # add all the file to stage
@@ -40,6 +43,7 @@
 	pl = pull
 	plo = pull origin
 	plom = pull origin master
+	plr = pull --rebase
 	#############
 	rb = rebase
 	#############
